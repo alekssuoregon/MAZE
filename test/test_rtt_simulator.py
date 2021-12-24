@@ -8,7 +8,7 @@ import constants
 import constellation_config
 
 def test_sat_sim():
-    state_dir = os.path.abspath("./starlink_test_state_100ms_for_200s")
+    stated_dir = os.path.abspath("./starlink_550_isls_plus_grid_ground_stations_top_100_algorithm_free_one_only_over_isls_test")
 
     gmap = sat_relay_sim.GroundstationMap(state_dir + "/" + id_map)
     gmap.load()

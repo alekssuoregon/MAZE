@@ -1,38 +1,38 @@
 import sys
+import os
 sys.path.append(os.path.abspath("../satgenpy"))
 
 import satgen
-import os
 import random
 import string
 import shutil
+import csv
 import tempfile
-import sim_config
 import constants
 from collections import defaultdict
 from satgen.post_analysis.print_routes_and_rtt import print_routes_and_rtt
 
-def SatelliteNetworkState():
+class SatelliteNetworkState():
     #gs_points is a generator of NetworkPoints
     def __init__(self, constellation_config, gs_points, duration, output_dir):
         self.constellation = constellation_config
         self.groundstation_points = gs_points
-        self.output_dir = output_dir
+        self.output_dir = output_dir 
         self.duration = duration
         self.loc_to_id = defaultdict(lambda: -1)
 
     def __create_tmp_gs_config(self):
         tmp_name = self.output_dir + "/tmp_gs_loc.csv"
         with open(tmp_name, "w") as fp:
-            writer = csv.writer(fp, delimeter=",", quotechar="\"", \
+            writer = csv.writer(fp, delimiter=",", quotechar="\"", \
                     quoting=csv.QUOTE_MINIMAL)
 
             id = 0
             for net_point in self.groundstation_points:
                 if net_point.type() == constants.GS_POINT_TYPE:
                     gs_name = net_point.name()
-                    row = [id, gs_name] + net_point.location() + [0.0]
-                    writer.write_row(row)
+                    row = [id, gs_name] + list(net_point.location()) + [0.0]
+                    writer.writerow(row)
                     self.loc_to_id[gs_name] = id
                     id += 1
 
@@ -43,10 +43,13 @@ def SatelliteNetworkState():
             os.makedirs(self.output_dir, exist_ok=True)
         tmp_gs_fname = self.__create_tmp_gs_config()
 
-        satgen.extend_ground_stations(tmp_gs_fname, self.output_dir+"/ground_stations.txt")
+        write_to_dir = self.output_dir + "/" + self.constellation.name
+        os.mkdir(write_to_dir)
+
+        satgen.extend_ground_stations(tmp_gs_fname, write_to_dir + "/ground_stations.txt")
         os.remove(tmp_gs_fname)
         satgen.generate_tles_from_scratch_manual(
-            self.output_dir + "/tles.txt",
+            write_to_dir + "/tles.txt",
             self.constellation.name,
             self.constellation.num_orbs,
             self.constellation.num_sats_per_orb,
@@ -57,23 +60,23 @@ def SatelliteNetworkState():
             self.constellation.mean_motion_rev_per_day
         )
         satgen.generate_plus_grid_isls(
-            self.output_dir + "/isls.txt",
+            write_to_dir + "/isls.txt",
             self.constellation.num_orbs,
             self.constellation.num_sats_per_orb,
             isl_shift=0,
             idx_offset=0
         )
         satgen.generate_description(
-            self.output_dir + "/description.txt",
+            write_to_dir + "/description.txt",
             self.constellation.max_gsl_length_m,
             self.constellation.max_isl_length_m
         )
 
         ground_stations = satgen.read_ground_stations_extended(
-            self.output_dir + "/ground_stations.txt"
+            write_to_dir + "/ground_stations.txt"
         )
         satgen.generate_simple_gsl_interfaces_info(
-            self.output_dir + "/gsl_interfaces_info.txt",
+            write_to_dir + "/gsl_interfaces_info.txt",
             self.constellation.num_orbs * self.constellation.num_sats_per_orb,
             len(ground_stations),
             1,
@@ -81,6 +84,10 @@ def SatelliteNetworkState():
             1,
             1
         )
+
+        for f in os.listdir(write_to_dir):
+            print(f)
+
         satgen.help_dynamic_state(
             self.output_dir,
             constants.HYPATIA_NUM_THREADS,
@@ -99,7 +106,7 @@ def SatelliteNetworkState():
     def cleanup(self):
         shutil.rmtree(self.output_dir)
 
-class GrounstationMap():
+class GroundstationMap():
     def __init__(self, gs_fname, gs_map=None):
         self.name_to_id_map = gs_map
         self.fname = gs_fname
@@ -115,7 +122,7 @@ class GrounstationMap():
             with open(self.fname, "r") as fp:
                 reader = csv.reader(fp)
                 for row in reader:
-                    self.name_to_id_map[int(row[0])] = row[1]
+                    self.name_to_id_map[row[0]] = int(row[1])
         except:
             raise IOError("Unexpected Error reading '" + self.fname + "': " + str(self.exc_info()[0]))
 
@@ -127,7 +134,7 @@ class GrounstationMap():
             with open(self.fname, "w") as fp:
                 writer = csv.writer(fp, delimiter=",", quotechar="\"", quoting=csv.QUOTE_MINIMAL)
                 for id, gs_name in self.name_to_id_map.items():
-                    writer.write_row([id, gs_name])
+                    writer.writerow([id, gs_name])
         except:
             raise IOError("Unexpected Error reading '" + self.fname + "': " + str(self.exc_info()[0]))
 
@@ -150,10 +157,11 @@ class SatelliteRelaySimulator():
     def run(self, src_name, dst_name):
         src_id = self.gs_name_to_id_map.get_groundstation_id(src_name)
         dst_id = self.gs_name_to_id_map.get_groundstation_id(dst_name)
-        print_routes_and_rtt(self.output_dir, self.state_dir, constants.TIMESTEP_MS, self.duration, src_id, dst_id, "")
+        print_routes_and_rtt(self.output_dir, self.state_dir, constants.TIMESTEP_MS, self.duration, src_id, dst_id, os.path.abspath("../satgenpy") + "/")
 
-        rtt_filename = self.output_dir + "/" + str(constants.TIMESTEP_MS) + "ms_for_" + str(self.duration) + "s/" + \
-            "manual/data/networkx_rtt_" + str(src_id) + "_to_" + str(dst_id)
+        for f in os.listdir(self.output_dir):
+            print(f)
+        rtt_filename = self.output_dir + "/data/networkx_rtt_" + str(src_id) + "_to_" + str(dst_id) + ".txt"
 
         with open(rtt_filename, "r") as rtt_file:
             reader = csv.reader(rtt_file)
@@ -168,6 +176,7 @@ class SatelliteRelaySimulator():
 
     def avg_rtt(self):
         avg = 0.0
+        total = 0
         for rtt_in_s in self.all_rtts():
             avg += rtt_in_s
             total += 1

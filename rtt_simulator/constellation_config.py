@@ -44,8 +44,7 @@ def GetStarlinkConfig():
 
     return ConstellationConfig("Starlink_550", eccentricity, arg_of_preigee_degree, \
             phase_diff, mean_motion_rev_per_day, altitude_m, \
-            satellite_cone_radius_m, max_gsl_length_m, max_isl_length_m, \
-            num_orbs, num_sats_per_orb, inclination_degree)
+            max_gsl_length_m, max_isl_length_m, num_orbs, num_sats_per_orb, inclination_degree)
 
 def GetKuiperConfig():
     eccentricity = 0.0000001
@@ -62,8 +61,7 @@ def GetKuiperConfig():
 
     return ConstellationConfig("Kuiper_630", eccentricity, arg_of_preigee_degree, \
             phase_diff, mean_motion_rev_per_day, altitude_m, \
-            satellite_cone_radius_m, max_gsl_length_m, max_isl_length_m, \
-            num_orbs, num_sats_per_orb, inclination_degree)
+            max_gsl_length_m, max_isl_length_m, num_orbs, num_sats_per_orb, inclination_degree)
 
 def GetTelesatConfig():
     eccentricity = 0.0000001
@@ -80,5 +78,4 @@ def GetTelesatConfig():
 
     return ConstellationConfig("Telesat_1015", eccentricity, arg_of_preigee_degree, \
             phase_diff, mean_motion_rev_per_day, altitude_m, \
-            satellite_cone_radius_m, max_gsl_length_m, max_isl_length_m, \
-            num_orbs, num_sats_per_orb, inclination_degree)
+            max_gsl_length_m, max_isl_length_m, num_orbs, num_sats_per_orb, inclination_degree)

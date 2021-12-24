@@ -17,14 +17,17 @@ class NetworkPoint():
     def city(self):
         return self.city
 
+    def type(self):
+        return self.point_type
+
     def location(self):
         if not self.is_extraterrestrial(): 
-            raise AttributeError("NetworkPoint of type '" + self.type + \
+            raise AttributeError("NetworkPoint of type '" + self.point_type + \
                                 "' has no location attribute")
         return (self.latitude, self.longitude)
 
     def is_terrestrial(self):
-        return self.point_type == constants.GS_POINT_TYPE
+        return self.point_type == constants.CITY_POINT_TYPE
 
     def is_extraterrestrial(self):
-        return self.point_type == constants.CITY_POINT_TYPE
+        return self.point_type == constants.GS_POINT_TYPE

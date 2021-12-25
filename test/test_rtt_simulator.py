@@ -41,6 +41,7 @@ def test_sat_sim():
         assert total == 2000
 
         #Make sure average rtt calculation is correct
+        print("test_sat_sim calculated vs given avg_rtt -> ", avg, " vs ", simulator.avg_rtt())
         assert simulator.avg_rtt() == avg
 
 def test_sat_state_gen():
@@ -54,14 +55,16 @@ def test_sat_state_gen():
         net_state = sat_relay_sim.SatelliteNetworkState(const_config, netpoints, 1, tempdir_name)
         net_state.create()
 
-        assert os.path.exists(tempdir_name + "/ground_stations.txt")
-        assert os.path.exists(tempdir_name + "/isls.txt")
-        assert os.path.exists(tempdir_name + "/description.txt")
-        assert os.path.exists(tempdir_name + "/gsl_interfaces_info.txt")
+        state_dir_name = tempdir_name + "/" + const_config.name
+        assert os.path.exists(state_dir_name + "/ground_stations.txt")
+        assert os.path.exists(state_dir_name + "/isls.txt")
+        assert os.path.exists(state_dir_name + "/description.txt")
+        assert os.path.exists(state_dir_name + "/gsl_interfaces_info.txt")
 
         gmap = net_state.groundstation_map()
 
         with tempfile.TemporaryDirectory() as sim_tempdir_name:
-            sat_sim = sat_relay_sim.SatelliteRelaySimulator(gmap, 1, tempdir_name, sim_tempdir_name)
-            sat_sim.run()
+            sat_sim = sat_relay_sim.SatelliteRelaySimulator(gmap, 1, state_dir_name, sim_tempdir_name)
+            sat_sim.run("Tokyo", "Shanghai")
+            print("test_sat_state_gen avg_rtt -> ", sat_sim.avg_rtt())
             assert sat_sim.avg_rtt() > 0

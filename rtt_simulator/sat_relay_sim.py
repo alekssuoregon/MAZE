@@ -28,12 +28,13 @@ class SatelliteNetworkState():
                     quoting=csv.QUOTE_MINIMAL)
 
             id = 0
+            node_inc = self.constellation.num_orbs * self.constellation.num_sats_per_orb
             for net_point in self.groundstation_points:
                 if net_point.type() == constants.GS_POINT_TYPE:
                     gs_name = net_point.name()
                     row = [id, gs_name] + list(net_point.location()) + [0.0]
                     writer.writerow(row)
-                    self.loc_to_id[gs_name] = id
+                    self.loc_to_id[gs_name] = node_inc + id
                     id += 1
 
         return tmp_name
@@ -47,6 +48,11 @@ class SatelliteNetworkState():
         os.mkdir(write_to_dir)
 
         satgen.extend_ground_stations(tmp_gs_fname, write_to_dir + "/ground_stations.txt")
+
+        with open(write_to_dir + "/ground_stations.txt") as fp:
+            all_str = fp.read()
+            print(all_str)
+
         os.remove(tmp_gs_fname)
         satgen.generate_tles_from_scratch_manual(
             write_to_dir + "/tles.txt",

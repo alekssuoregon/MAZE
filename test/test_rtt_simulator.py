@@ -17,14 +17,18 @@ def test_sat_sim():
 
     with tempfile.TemporaryDirectory() as tempdir_name:
         duration = 200 #seconds
-        src_name = "start"
-        dst_name = "end"
 
+        src = net_point.NetworkPoint("start", constants.GS_POINT_TYPE, "start")
+        dst = net_point.NetworkPoint("end", constants.GS_POINT_TYPE, "end")
         simulator = sat_relay_sim.SatelliteRelaySimulator(gmap, duration, state_dir, tempdir_name)
-        simulator.run(src_name, dst_name)
 
-        src_id = gmap.get_groundstation_id(src_name)
-        dst_id = gmap.get_groundstation_id(dst_name)
+        net_seg = net_segment.NetworkSegment(src, dst)
+        net_segment.NetworkSegment.configure(simulator, None)
+
+        rtts = net_seg.get_rtts()
+
+        src_id = gmap.get_groundstation_id(src.name())
+        dst_id = gmap.get_groundstation_id(dst.name())
         rtt_fname = tempdir_name + "/data/networkx_rtt_" + str(src_id) + "_to_" + str(dst_id) + ".txt"
 
         #Make sure simulator.run created the output file
@@ -32,7 +36,7 @@ def test_sat_sim():
 
         total = 0
         avg = 0.0
-        for rtt in simulator.all_rtts():
+        for rtt in rtts:
             avg += rtt
             total += 1
         avg /= float(total)
@@ -41,15 +45,14 @@ def test_sat_sim():
         assert total == 2000
 
         #Make sure average rtt calculation is correct
-        print("test_sat_sim calculated vs given avg_rtt -> ", avg, " vs ", simulator.avg_rtt())
-        assert simulator.avg_rtt() == avg
+        print("test_sat_sim calculated vs given avg_rtt -> ", avg, " vs ", net_seg.avg_rtt())
+        assert net_seg.avg_rtt() == avg
 
 def test_sat_state_gen():
     const_config = constellation_config.GetStarlinkConfig()
-    netpoints = (net_point for net_point in [ \
-        net_point.NetworkPoint("Tokyo", constants.GS_POINT_TYPE, "Tokyo", lat=35.6895, long=139.69171), \
-        net_point.NetworkPoint("Shanghai", constants.GS_POINT_TYPE, "Shanghai", lat=31.22222, long=121.45806) \
-        ])
+    src = net_point.NetworkPoint("Tokyo", constants.GS_POINT_TYPE, "Tokyo", lat=35.6895, long=139.69171)
+    dst = net_point.NetworkPoint("Shanghai", constants.GS_POINT_TYPE, "Shanghai", lat=31.22222, long=121.45806)
+    netpoints = (net_point for net_point in [src, dst])
 
     with tempfile.TemporaryDirectory() as tempdir_name:
         net_state = sat_relay_sim.SatelliteNetworkState(const_config, netpoints, 1, tempdir_name)
@@ -65,6 +68,9 @@ def test_sat_state_gen():
 
         with tempfile.TemporaryDirectory() as sim_tempdir_name:
             sat_sim = sat_relay_sim.SatelliteRelaySimulator(gmap, 1, state_dir_name, sim_tempdir_name)
-            sat_sim.run("Tokyo", "Shanghai")
-            print("test_sat_state_gen avg_rtt -> ", sat_sim.avg_rtt())
+
+            net_seg = net_segment.NetworkSegment(src, dst)
+            net_segment.NetworkSegment.configure(sat_sim, None)
+
+            print("test_sat_state_gen avg_rtt -> ", net_seg.avg_rtt())
             assert sat_sim.avg_rtt() > 0

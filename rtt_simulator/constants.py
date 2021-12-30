@@ -1,3 +1,4 @@
+#Static variables
 SIMULATION_NAME_KEY = "SimulationName"
 NETWORK_POINTS_KEY = "NetworkPoints"
 NETWORK_ORDER_KEY = "NetworkOrder"
@@ -11,11 +12,12 @@ CITY_KEY = "City"
 LONGITUDE_KEY = "Longitude"
 LATITUDE_KEY = "Latitude"
 
-CITY_POINT_TYPE = "City"
+CITY_POINT_TYPE = "Terrestrial"
 GS_POINT_TYPE = "GroundStation"
 
 DEFAULT_LAT_LONG = -2**31
 
-HYPATIA_NUM_THREADS = 1
+#Adjustable variables
+HYPATIA_NUM_THREADS = 10
 TIMESTEP_MS = 100
 DYNAMIC_STATE_ALGORITHM = "algorithm_free_one_only_over_isls"

@@ -10,6 +10,7 @@ import csv
 import tempfile
 import constants
 from collections import defaultdict
+from network_simulator import NetworkSimulator 
 from satgen.post_analysis.print_routes_and_rtt import print_routes_and_rtt
 
 class SatelliteNetworkState():
@@ -17,7 +18,7 @@ class SatelliteNetworkState():
     def __init__(self, constellation_config, gs_points, duration, output_dir):
         self.constellation = constellation_config
         self.groundstation_points = gs_points
-        self.output_dir = output_dir 
+        self.output_dir = output_dir
         self.duration = duration
         self.loc_to_id = defaultdict(lambda: -1)
 
@@ -152,7 +153,7 @@ class GroundstationMap():
         return self.name_to_id_map[name]
 
 
-class SatelliteRelaySimulator():
+class SatelliteRelaySimulator(NetworkSimulator):
     def __init__(self, gs_map, duration, state_dir, output_dir):
         self.state_dir = state_dir
         self.output_dir = output_dir
@@ -160,9 +161,12 @@ class SatelliteRelaySimulator():
         self.rtt_datapoints = None
         self.gs_name_to_id_map = gs_map
 
-    def run(self, src_name, dst_name):
-        src_id = self.gs_name_to_id_map.get_groundstation_id(src_name)
-        dst_id = self.gs_name_to_id_map.get_groundstation_id(dst_name)
+    """
+    src, dst are NetworkPoints
+    """
+    def generate_rtts(self, src, dst):
+        src_id = self.gs_name_to_id_map.get_groundstation_id(src.name())
+        dst_id = self.gs_name_to_id_map.get_groundstation_id(dst.name())
         print_routes_and_rtt(self.output_dir, self.state_dir, constants.TIMESTEP_MS, self.duration, src_id, dst_id, os.path.abspath("../satgenpy") + "/")
 
         for f in os.listdir(self.output_dir):
@@ -176,19 +180,7 @@ class SatelliteRelaySimulator():
                 rtt_in_seconds = float(row[1]) / 1000000000.0
                 self.rtt_datapoints.append(rtt_in_seconds)
 
-    def all_rtts(self):
-        for rtt_in_s in self.rtt_datapoints:
-            yield rtt_in_s
-
-    def avg_rtt(self):
-        avg = 0.0
-        total = 0
-        for rtt_in_s in self.all_rtts():
-            avg += rtt_in_s
-            total += 1
-
-        avg /= float(total)
-        return avg
+        return (rtt_in_s for rtt_in_s in self.rtt_datapoints)
 
     def cleanup(self):
         shutil.rmtree(self.output_dir)

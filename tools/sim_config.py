@@ -1,6 +1,9 @@
 import os
+import sys
 import json
 import logging
+sys.path.append(os.path.abspath("../rtt_simulator"))
+
 import constants
 import constellation_config
 from json import JSONDecodeError
@@ -15,10 +18,8 @@ config file format: JSON
     "SimulationDuration": float(seconds),
     "NetworkPoints": {
         "{Point Name}": {
-            "Type": "City" | "GroundStation",
+            "Type": "Terrestrial" | "GroundStation",
             "Location": {
-                "City": String,
-                AND/OR
                 "Longitude": float,
                 "Latitude": float
             }
@@ -141,13 +142,9 @@ class SimulationConfig():
             type = point_def[constants.POINT_TYPE_KEY]
             city = point_def[constants.LOCATION_KEY][constants.CITY_KEY]
 
-            network_point = None
-            if type == constants.GS_POINT_TYPE:
-                latitude = point_def[constants.LOCATION_KEY][constants.LATITUDE_KEY]
-                longitude = point_def[constants.LOCATION_KEY][constants.LONGITUDE_KEY]
-                network_point = NetworkPoint(point_name, type, city, latitude, longitude)
-            else:
-                network_point = NetworkPoint(point_name, type, city)
+            latitude = point_def[constants.LOCATION_KEY][constants.LATITUDE_KEY]
+            longitude = point_def[constants.LOCATION_KEY][constants.LONGITUDE_KEY]
+            network_point = NetworkPoint(point_name, type, city, latitude, longitude)
 
             self.network_points.append(network_point)
 
@@ -158,6 +155,9 @@ class SimulationConfig():
         else:
             self.constellation = constellation_config.GetTelesatConfig()
 
+    def duration(self):
+        return self.duration
+        
     def network_points(self):
         for point in self.network_points:
             yield point

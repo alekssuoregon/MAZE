@@ -7,6 +7,7 @@ import sat_relay_sim
 import constants
 import constellation_config
 import net_point
+import terrestrial_simulator
 
 def test_sat_sim():
     state_dir = os.path.abspath("./starlink_550_isls_plus_grid_ground_stations_top_100_algorithm_free_one_only_over_isls_test")
@@ -74,3 +75,18 @@ def test_sat_state_gen():
 
             print("test_sat_state_gen avg_rtt -> ", net_seg.avg_rtt())
             assert sat_sim.avg_rtt() > 0
+
+def test_dist_sim():
+    seattle_loc = (47.6062, 122.3321)
+    los_angeles_loc = (34.0522, 118.2437)
+    portland_loc = (45.5152, 122.6784)
+
+    seattle_to_la_km = terrestrial_simulator.DistanceBasedPingCalculator._crow_flies_distance(seattle_loc[0], \
+        seattle_loc[1], los_angeles_loc[0], los_angeles_loc[1])
+    assert int(seattle_to_la_km) == 1546
+
+    seattle_to_la_rtt_ms = 32.986
+    simulator = terrestrial_simulator.DistanceBasedPingCalculator(seattle_to_la_km, seattle_to_la_rtt_ms)
+
+    assert simulator.rtt_between(seattle_loc[0], seattle_loc[1], los_angeles_loc[0], los_angeles_loc[1]) == seattle_to_la_rtt_ms
+    assert 5 - simulator.rtt_between(seattle_loc[0], seattle_loc[1], portland_loc[0], portland_loc[1]) < 0.1

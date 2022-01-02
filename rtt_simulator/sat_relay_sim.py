@@ -154,12 +154,13 @@ class GroundstationMap():
 
 
 class SatelliteRelaySimulator(NetworkSimulator):
-    def __init__(self, gs_map, duration, state_dir, output_dir):
+    def __init__(self, gs_map, duration, state_dir, output_dir, satgenpy_dir):
         self.state_dir = state_dir
         self.output_dir = output_dir
         self.duration = duration
         self.rtt_datapoints = None
         self.gs_name_to_id_map = gs_map
+        self.satgenpy_dir = satgenpy_dir
 
     """
     src, dst are NetworkPoints
@@ -167,7 +168,7 @@ class SatelliteRelaySimulator(NetworkSimulator):
     def generate_rtts(self, src, dst):
         src_id = self.gs_name_to_id_map.get_groundstation_id(src.name())
         dst_id = self.gs_name_to_id_map.get_groundstation_id(dst.name())
-        print_routes_and_rtt(self.output_dir, self.state_dir, constants.TIMESTEP_MS, self.duration, src_id, dst_id, os.path.abspath("../satgenpy") + "/")
+        print_routes_and_rtt(self.output_dir, self.state_dir, constants.TIMESTEP_MS, self.duration, src_id, dst_id, self.satgenpy_dir + "/")
 
         for f in os.listdir(self.output_dir):
             print(f)
@@ -177,8 +178,8 @@ class SatelliteRelaySimulator(NetworkSimulator):
             reader = csv.reader(rtt_file)
             self.rtt_datapoints = []
             for row in reader:
-                rtt_in_seconds = float(row[1]) / 1000000000.0
-                self.rtt_datapoints.append(rtt_in_seconds)
+                rtt_in_ms = float(row[1]) / 1000000.0
+                self.rtt_datapoints.append(rtt_in_ms)
 
         return (rtt_in_s for rtt_in_s in self.rtt_datapoints)
 

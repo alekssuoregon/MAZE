@@ -1,10 +1,13 @@
 import os
 import sys
+import csv
 import argparse
 sys.path.append(os.path.abspath(".."))
+sys.path.append(os.path.abspath("../../rtt_simulator"))
+sys.path.append(os.path.abspath("../../satgenpy"))
 
 from sim_config import SimulationConfig
-from helpers import PNWMixedNetworkRTTSimulator, retrieve_network_state
+from helper import PNWMixedNetworkRTTSimulator, retrieve_network_state
 
 def read_options():
     parser = argparse.ArgumentParser(description="Simulate RTT time for a mixed ground-satellite network in the PNW")
@@ -26,15 +29,19 @@ def main():
     if not os.path.exists(sim_path):
         os.mkdir(sim_path)
 
-    gs_map = retrieve_network_state(config, gen_state=args.gen_state)
+    gs_map = retrieve_network_state(config, sim_path, gen_state=args.gen_state)
+
 
     if args.run:
         rtt_file_path = sim_path + "/calculated_rtts.txt"
         simulator = PNWMixedNetworkRTTSimulator(config, sim_path, gs_map)
 
         with open(rtt_file_path, 'w') as fp:
-            writer = csv.reader(fp)
+            writer = csv.writer(fp)
             i = 0
             for rtt in simulator.generate_rtts():
                 writer.writerow([i, rtt])
                 i += 1
+
+if __name__ == "__main__":
+    main()

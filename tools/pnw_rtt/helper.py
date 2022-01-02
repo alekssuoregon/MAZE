@@ -3,10 +3,11 @@ import sys
 sys.path.append(os.path.abspath("../../rtt_simulator"))
 sys.path.append(os.path.abspath(".."))
 
+import constants
 import sim_config
 import net_segment
 from network_simulator import NetworkSimulator
-from sat_relay_sim import GroundstationMap, SatelliteRelaySimulator
+from sat_relay_sim import GroundstationMap, SatelliteNetworkState, SatelliteRelaySimulator
 from terrestrial_simulator import DistanceBasedPingCalculator
 
 class PNWDistanceBasedRTTSimulator(NetworkSimulator, DistanceBasedPingCalculator):
@@ -14,8 +15,8 @@ class PNWDistanceBasedRTTSimulator(NetworkSimulator, DistanceBasedPingCalculator
     _seattle_to_la_rtt_ms = 32.986
 
     def __init__(self, datapoints_per):
-        TerrestrialRTTSimulator.__init__(self)
-        DistanceBasedPingCalculator.__init__(self, _seattle_to_la_km, _seattle_to_la_rtt_ms)
+        NetworkSimulator.__init__(self)
+        DistanceBasedPingCalculator.__init__(self, PNWDistanceBasedRTTSimulator._seattle_to_la_km, PNWDistanceBasedRTTSimulator._seattle_to_la_rtt_ms)
         self._datapoints_per_run = datapoints_per
 
     def generate_rtts(self, src, dst):
@@ -32,20 +33,21 @@ class PNWMixedNetworkRTTSimulator():
         self._network_segments = None
         self._datapoints_per_run = 0
         self._groundstation_map = gs_map
+        self._create_sim_resources()
 
     def _create_sim_resources(self):
-        self._datapoint_per_run = (self._config.duration() * 1000) / constants.TIMESTEP_MS
+        self._datapoints_per_run = int((self._config.duration() * 1000) / constants.TIMESTEP_MS)
         terra_simulator = PNWDistanceBasedRTTSimulator(self._datapoints_per_run)
 
-        state_dir = project_dir + "/" + self._config.constellation().name
-        exterra_simulator = SatelliteRelaySimulator(self._groundstation_map, self._config.duration(), state_dir, self._project_dir)
-        net_segment.NetworkSegment.configure(terra_simulator, exterra_simulator)
+        state_dir = self._project_dir + "/" + self._config.constellation().name
+        exterra_simulator = SatelliteRelaySimulator(self._groundstation_map, self._config.duration(), state_dir, self._project_dir, os.path.abspath("../../satgenpy"))
+        net_segment.NetworkSegment.configure(exterra_simulator, terra_simulator)
         self._network_segments = []
 
         cur_point = None
         past_point = None
 
-        for network_point in config.network_points():
+        for network_point in self._config.network_points():
             past_point = cur_point
             cur_point = network_point
             if past_point is not None:
@@ -53,11 +55,10 @@ class PNWMixedNetworkRTTSimulator():
                 self._network_segments.append(new_seg.get_rtts())
 
     def generate_rtts(self):
-        for i in range(self._datapoint_per_run):
+        for i in range(self._datapoints_per_run):
             total_rtt = 0.0
             for segment in self._network_segments:
                 total_rtt += next(segment)
-            total_rtt /= len(self._network_segments)
             yield total_rtt
 
 def retrieve_network_state(config, output_dir, gen_state=False):

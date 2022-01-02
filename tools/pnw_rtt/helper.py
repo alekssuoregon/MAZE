@@ -26,8 +26,9 @@ class PNWDistanceBasedRTTSimulator(NetworkSimulator, DistanceBasedPingCalculator
         return (calculated_rtt for i in range(self._datapoints_per_run))
 
 class PNWMixedNetworkRTTSimulator():
-    def __init__(self, config, gs_map):
+    def __init__(self, config, project_dir, gs_map):
         self._config = config
+        self._project_dir = project_dir
         self._network_segments = None
         self._datapoints_per_run = 0
         self._groundstation_map = gs_map
@@ -35,7 +36,9 @@ class PNWMixedNetworkRTTSimulator():
     def _create_sim_resources(self):
         self._datapoint_per_run = (self._config.duration() * 1000) / constants.TIMESTEP_MS
         terra_simulator = PNWDistanceBasedRTTSimulator(self._datapoints_per_run)
-        exterra_simulator = SatelliteRelaySimulator(gs_map, self._config.duration(), )
+
+        state_dir = project_dir + "/" + self._config.constellation().name
+        exterra_simulator = SatelliteRelaySimulator(self._groundstation_map, self._config.duration(), state_dir, self._project_dir)
         net_segment.NetworkSegment.configure(terra_simulator, exterra_simulator)
         self._network_segments = []
 
@@ -57,15 +60,17 @@ class PNWMixedNetworkRTTSimulator():
             total_rtt /= len(self._network_segments)
             yield total_rtt
 
-def retrieve_network_state(config, state_path, gen_state=False):
+def retrieve_network_state(config, output_dir, gen_state=False):
     gs_map = None
 
+    constellation = config.constellation()
+    state_dir = output_dir + "/" + constellation.name
     if gen_state:
-        state_generator = SatelliteNetworkState(config.constellation(), config.network_points(), config.duration(), state_path)
+        state_generator = SatelliteNetworkState(constellation, config.network_points(), config.duration(), output_dir)
         state_generator.create()
-        gs_map = state_generator.groundstation_map(save_to_fname=state_path + "/g_map.txt")
+        gs_map = state_generator.groundstation_map(save_to_fname=state_dir+"/g_map.txt")
         gs_map.save()
     else:
-        gs_map = GroundstationMap(state_path + "/g_map.txt")
+        gs_map = GroundstationMap(state_dir + "/g_map.txt")
         gs_map.load()
     return gs_map

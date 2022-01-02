@@ -14,7 +14,6 @@ from collections import defaultdict
 config file format: JSON
 {
     "SimulationName": String,
-    "OutputDirectory": String,
     "SimulationDuration": float(seconds),
     "NetworkPoints": {
         "{Point Name}": {
@@ -34,7 +33,6 @@ config file format: JSON
 class SimulationConfig():
     def __init__(self, config_fname):
         self._sim_name = ""
-        self._output_dir = ""
         self._duration = 0
         self._constellation = None
         self._network_points = []
@@ -108,7 +106,6 @@ class SimulationConfig():
             raise ValueError("Bad config file: Invalid format")
 
         self._sim_name = config[constants.SIMULATION_NAME_KEY]
-        self._output_dir = config[constants.OUTPUT_DIR_KEY]
         self._duration = int(config[constants.DURATION_KEY])
 
         for point_name in config[constants.NETWORK_ORDER_KEY]:

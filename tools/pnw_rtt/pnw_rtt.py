@@ -26,12 +26,11 @@ def main():
     if not os.path.exists(sim_path):
         os.mkdir(sim_path)
 
-    state_path = sim_path + "/state"
-    gs_map = retrieve_network_state(config, state_path, gen_state=args.gen_state)
+    gs_map = retrieve_network_state(config, gen_state=args.gen_state)
 
     if args.run:
         rtt_file_path = sim_path + "/calculated_rtts.txt"
-        simulator = PNWMixedNetworkRTTSimulator(config, gs_map)
+        simulator = PNWMixedNetworkRTTSimulator(config, sim_path, gs_map)
 
         with open(rtt_file_path, 'w') as fp:
             writer = csv.reader(fp)

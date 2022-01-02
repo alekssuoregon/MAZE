@@ -8,7 +8,6 @@ DURATION_KEY = "SimulationDuration"
 
 POINT_TYPE_KEY = "Type"
 LOCATION_KEY = "Location"
-CITY_KEY = "City"
 LONGITUDE_KEY = "Longitude"
 LATITUDE_KEY = "Latitude"
 

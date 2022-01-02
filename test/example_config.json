@@ -1,0 +1,37 @@
+{
+  "SimulationName": "TestSimulation",
+  "OutputDirectory": "test_dir",
+  "SimulationDuration": 1,
+  "NetworkPoints": {
+    "Seattle": {
+      "Type": "Terrestrial",
+      "Location": {
+        "Latitude": 47.6062,
+        "Longitude": 122.3321
+      }
+    },
+    "Portland": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 45.5152,
+        "Longitude": 122.6784
+      }
+    },
+    "San Francisco": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 37.7749,
+        "Longitude": 122.4194
+      }
+    },
+    "Los Angeles": {
+      "Type": "Terrestrial",
+      "Location": {
+        "Latitude": 34.0522,
+        "Longitude": 118.2437
+      }
+    }
+  },
+  "NetworkOrder": ["Seattle", "Portland", "San Francisco", "Los Angeles"],
+  "Constellation": "Starlink"
+}

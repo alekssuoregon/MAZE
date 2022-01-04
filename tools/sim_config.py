@@ -61,7 +61,6 @@ class SimulationConfig():
 
         #Validate main config section existence and data types
         valid = constants.SIMULATION_NAME_KEY in config and isinstance(config[constants.SIMULATION_NAME_KEY], str)
-        valid = valid and constants.OUTPUT_DIR_KEY in config and isinstance(config[constants.OUTPUT_DIR_KEY], str)
         valid = valid and constants.DURATION_KEY in config and isinstance(config[constants.DURATION_KEY], int) and \
                 config[constants.DURATION_KEY] > 0
         valid = valid and constants.NETWORK_POINTS_KEY in config and isinstance(config[constants.NETWORK_POINTS_KEY], dict)

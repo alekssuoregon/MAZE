@@ -3,7 +3,6 @@ SIMULATION_NAME_KEY = "SimulationName"
 NETWORK_POINTS_KEY = "NetworkPoints"
 NETWORK_ORDER_KEY = "NetworkOrder"
 CONSTELLATION_KEY = "Constellation"
-OUTPUT_DIR_KEY = "OutputDirectory"
 DURATION_KEY = "SimulationDuration"
 
 POINT_TYPE_KEY = "Type"

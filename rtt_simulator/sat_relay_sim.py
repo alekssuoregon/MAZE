@@ -155,7 +155,7 @@ class GroundstationMap():
         :raises ValueError: If invalid file name is provided
         :raises IOError: If unable to read gs_fname
         """
-        if self.gs_fname is None or not os.path.exists(self.fname):
+        if self.fname is None or not os.path.exists(self.fname):
             raise ValueError("Unable to load groundstation mapping, invalid ground station mapping file provided")
 
         self.name_to_id_map = {}

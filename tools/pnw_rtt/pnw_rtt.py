@@ -37,7 +37,7 @@ def main():
     try:
         gs_map = retrieve_network_state(config, sim_path, gen_state=args.gen_state)
     except ValueError as e:
-        logging.error("Failed to retrieve satellite network state -> ", str(e))
+        logging.error("Failed to retrieve satellite network state -> " + str(e))
         return
 
     if args.run:
@@ -54,10 +54,10 @@ def main():
                     avg_rtt += rtt
                     writer.writerow([i, rtt])
                     i += 1
-                logging.info("Average calculated RTT -> ", avg_rtt / i)
-            logging.info("Simulation results written to ", rtt_file_path)
+                logging.info("Average calculated RTT -> " + str(avg_rtt / i))
+            logging.info("Simulation results written to " + rtt_file_path)
         except OSError as e:
-            logging.error("Failed to write simulation results to ", rtt_file_path, " -> ", str(e))
+            logging.error("Failed to write simulation results to " + rtt_file_path + " -> " + str(e))
             return
 
 

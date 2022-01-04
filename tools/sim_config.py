@@ -98,8 +98,7 @@ class SimulationConfig():
             try:
                 config = json.load(fp)
             except JSONDecodeError as e:
-                logging.error("Failed to load JSON file '" + fname + "': " + str(e))
-                raise ValueError("Bad config file: Invalid JSON")
+                raise ValueError("Bad config file: Invalid JSON -> " + str(e))
 
 
         if not self.__valid_config(config):

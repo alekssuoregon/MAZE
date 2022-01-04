@@ -1,6 +1,5 @@
 {
   "SimulationName": "TestSimulation",
-  "OutputDirectory": "test_dir",
   "SimulationDuration": 1,
   "NetworkPoints": {
     "Seattle": {

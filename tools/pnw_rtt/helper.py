@@ -1,5 +1,6 @@
 import os
 import sys
+import logging
 sys.path.append(os.path.abspath("../../rtt_simulator"))
 sys.path.append(os.path.abspath(".."))
 
@@ -67,11 +68,20 @@ def retrieve_network_state(config, output_dir, gen_state=False):
     constellation = config.constellation()
     state_dir = output_dir + "/" + constellation.name
     if gen_state:
+        logging.info("Generating satellite constellation state...")
         state_generator = SatelliteNetworkState(constellation, config.network_points(), config.duration(), output_dir)
         state_generator.create()
         gs_map = state_generator.groundstation_map(save_to_fname=state_dir+"/g_map.txt")
         gs_map.save()
     else:
+        logging.info("Loading satellite constellation metadata...")
+
+        g_map_fname = state_dir + "/g_map.txt"
+        if not os.path.exists(g_map_fname):
+            raise ValueError("Failed to load metadata. No satellite metadata found at " + g_map_fname)
+        if not os.access(g_map_fname, os.R_OK):
+            raise ValueError("Failed to load metadata. Invalid permissions to read file " + g_map_fname)
+
         gs_map = GroundstationMap(state_dir + "/g_map.txt")
         gs_map.load()
     return gs_map

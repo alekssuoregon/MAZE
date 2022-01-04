@@ -10,10 +10,20 @@ import csv
 import tempfile
 import constants
 from collections import defaultdict
-from network_simulator import NetworkSimulator 
+from network_simulator import NetworkSimulator
 from satgen.post_analysis.print_routes_and_rtt import print_routes_and_rtt
 
 class SatelliteNetworkState():
+    """
+    SatelliteNetworkState generates a LEO satellite constellation using the
+    Hypatia framework
+
+    :param constellation_config.ConstellationConfig constellation_config: An
+        object describing the satellite constellation
+    :param gs_points: A generator object the yields net_point.NetworkPoint objects
+    :param int duration: Duration of the simulation in seconds
+    :param str output_dir: The folder to save the generated state to
+    """
     #gs_points is a generator of NetworkPoints
     def __init__(self, constellation_config, gs_points, duration, output_dir):
         self.constellation = constellation_config
@@ -41,6 +51,9 @@ class SatelliteNetworkState():
         return tmp_name
 
     def create(self):
+        """
+        create generates the satellite network state
+        """
         if not os.path.isdir(self.output_dir):
             os.makedirs(self.output_dir, exist_ok=True)
         tmp_gs_fname = self.__create_tmp_gs_config()
@@ -108,21 +121,42 @@ class SatelliteNetworkState():
         )
 
     def groundstation_map(self, save_to_fname=None):
+        """
+        groundstation_map returns an object mapping ground station node names
+        to their internal simulation IDs
+
+        :param str save_to_fname: The file name to save the groundstation map to
+        :return: GroundstationMap object
+        """
         return GroundstationMap(save_to_fname, gs_map=self.loc_to_id)
 
     def cleanup(self):
+        """
+        cleanup removes the generated satellite state files
+        """
         shutil.rmtree(self.output_dir)
 
 class GroundstationMap():
+    """
+    GroundstationMap holds information mapping ground station network nodes
+    to their internal simulation ID
+
+    :param str gs_fname: The filename to store/load the mapping to/from
+    :param dict gs_map: The dictionary object containing the (Name, ID) mapping
+    """
     def __init__(self, gs_fname, gs_map=None):
         self.name_to_id_map = gs_map
         self.fname = gs_fname
 
     def load(self):
-        if not os.path.exists(self.fname):
-            raise ValueError("No such file '" + self.fname + "' to load from")
-        if not os.access(self.fname, os.R_OK):
-            raise ValueError("Access Denied to read file '" + self.fname + "'")
+        """
+        load reads the gs_fname file and attempts to load the mapping into memory
+
+        :raises ValueError: If invalid file name is provided
+        :raises IOError: If unable to read gs_fname
+        """
+        if self.gs_fname is None or not os.path.exists(self.fname):
+            raise ValueError("Unable to load groundstation mapping, invalid ground station mapping file provided")
 
         self.name_to_id_map = {}
         try:
@@ -134,6 +168,12 @@ class GroundstationMap():
             raise IOError("Unexpected Error reading '" + self.fname + "': " + str(self.exc_info()[0]))
 
     def save(self):
+        """
+        save stores the ground station mapping to disk at gs_fname
+
+        :raises ValueError: If no gs_fname was provided
+        :raises IOError: If unable to write to gs_fname
+        """
         if self.fname is None:
             raise ValueError("No write filename was specified")
 
@@ -146,6 +186,14 @@ class GroundstationMap():
             raise IOError("Unexpected Error reading '" + self.fname + "': " + str(self.exc_info()[0]))
 
     def get_groundstation_id(self, name):
+        """
+        get_groundstation_id returns the internal simulation ID of the provided
+        ground statio node name
+
+        :param str name: Name of the node to lookup
+        :raises ValueError: If no map has been loaded or lookup fails
+        :return: int ID of node
+        """
         if self.name_to_id_map is None:
             raise ValueError("No groundstation name to ID map has been loaded")
         if name not in self.name_to_id_map:
@@ -154,6 +202,19 @@ class GroundstationMap():
 
 
 class SatelliteRelaySimulator(NetworkSimulator):
+    """
+    SatelliteRelaySimulator implements the network_simulator.NetworkSimulator
+    interface and generates Round Trip Times between two ground stations accross
+    a LEO satellite constellation
+
+    :param GroundstationMap gs_map: An object mapping ground station node names
+        to internal simulator IDs used by Hypatia
+    :param int duration: Duration of the simulation in seconds
+    :param str state_dir: Path to the directory containing the generated satellite
+        network state
+    :param str output_dir: Directory to write the calculated RTTs to
+    :param str satgenpy_dir: Full path to the hypatia satgenpy module
+    """
     def __init__(self, gs_map, duration, state_dir, output_dir, satgenpy_dir):
         self.state_dir = state_dir
         self.output_dir = output_dir
@@ -166,6 +227,14 @@ class SatelliteRelaySimulator(NetworkSimulator):
     src, dst are NetworkPoints
     """
     def generate_rtts(self, src, dst):
+        """
+        generate_rtts calculates and returns the Round Trip Times between
+        the provided source and destination ground station network nodes
+
+        :param net_point.NetworkPoint src: Source ground station
+        :param net_point.NetworkPoint dst: Destination ground station
+        :return: A generator object that yields RTTs in milliseconds
+        """
         src_id = self.gs_name_to_id_map.get_groundstation_id(src.name())
         dst_id = self.gs_name_to_id_map.get_groundstation_id(dst.name())
         print_routes_and_rtt(self.output_dir, self.state_dir, constants.TIMESTEP_MS, self.duration, src_id, dst_id, self.satgenpy_dir + "/")
@@ -184,4 +253,7 @@ class SatelliteRelaySimulator(NetworkSimulator):
         return (rtt_in_s for rtt_in_s in self.rtt_datapoints)
 
     def cleanup(self):
+        """
+        cleanup deletes all files generated by the simulator
+        """
         shutil.rmtree(self.output_dir)

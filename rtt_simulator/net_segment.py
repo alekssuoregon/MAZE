@@ -1,12 +1,28 @@
 import constants
 
 class NetworkSegment():
+    """
+    NetworkSegment describes a connection between two nodes on the network
+    path
+
+    :param net_point.NetworkPoint net_point_a: The start node in the segment
+    :param net_point.NetworkPoint net_point_b: The end node in the segment
+    """
     _extraterra_sim = None
     _terra_sim = None
     _is_configured = False
 
     @classmethod
     def configure(cls, et_sim, terra_sim):
+        """
+        configure configures the NetworkSegment class with the required simulators
+        to allow the calculation of the segments Round Trip Time
+
+        :param network_simulator.NetworkSimulator et_sim: The simulator for calculating
+            RTTs between two ground station nodes via satellite constellation
+        :param network_simulator.NetworkSimulator terra_sim: The simulator for calculating
+            RTTs between two nodes, one of which is not a ground station node
+        """
         cls._extraterra_sim = et_sim
         cls._terra_sim = terra_sim
         cls._is_configured = True
@@ -25,11 +41,22 @@ class NetworkSegment():
         self._rtts = [rtt for rtt in simulator.generate_rtts(self._point_a, self._point_b)]
 
     def get_rtts(self):
+        """
+        get_rtts returns a generator which yields each individual calculated
+            RTT in milliseconds of the segment
+
+        :return: Generator object
+        """
         if self._rtts is None:
             self._run_rtt_simulation()
         return (rtt for rtt in self._rtts)
 
     def avg_rtt(self):
+        """
+        avg_rtt returns the mean RTT in milliseconds of the segment
+
+        :return: float
+        """
         if self._rtts is None:
             self._run_rtt_simulation()
         return sum(self._rtts) / float(len(self._rtts))

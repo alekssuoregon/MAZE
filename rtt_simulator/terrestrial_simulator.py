@@ -2,6 +2,14 @@ import math
 from network_simulator import NetworkSimulator
 
 class DistanceBasedPingCalculator():
+    """
+    DistanceBasedPingCalculator estimates the Round Trip Time between two
+    points based on the known Round Trip Time and distance between two
+    master points
+
+    :param float distance_km: Distance between the two master points in kilometers
+    :param float rtt_ms: Round Trip Time between the two master points
+    """
     def __init__(self, distance_km, rtt_ms):
         self._distance_km = distance_km
         self._rtt_ms = rtt_ms
@@ -20,6 +28,15 @@ class DistanceBasedPingCalculator():
         return d
 
     def rtt_between(self, lat1, long1, lat2, long2):
+        """
+        rtt_between estimates the Round Trip Time between geographical points
+
+        :param float lat1: Latitude of point one
+        :param float long1: Longitude of point one
+        :param float lat2: Latitude of point two
+        :param float long2: Longitude of point two
+        :return: Estimated Round Trip Time in milliseconds
+        """
         segment_distance = DistanceBasedPingCalculator._crow_flies_distance( \
             lat1, long1, lat2, long2)
         distance_percent = segment_distance / self._distance_km

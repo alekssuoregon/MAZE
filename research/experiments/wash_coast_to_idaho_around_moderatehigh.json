@@ -1,0 +1,43 @@
+{
+  "SimulationName": "Wash_Idaho_Metro_Route_Around_Seattle",
+  "SimulationDuration": 50,
+  "NetworkPoints": {
+    "West_Washington_Moderate_Metro": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 124.7475777,
+        "Longitude": 48.1665485
+      }
+    },
+    "West_Seattle_ModerateHigh_Metro": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 124.3832924,
+        "Longitude": 47.6144850
+      }
+    },
+    "East_Seattle_ModerateHigh_Metro": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 121.338718,
+        "Longitude": 47.2896012
+      }
+    },
+    "East_Washington_Moderate_Metro": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 120.0110503,
+        "Longitude": 47.7192189
+      }
+    },
+    "NorthWest_Idaho_Escape": {
+      "Type": "Terrestrial",
+      "Location": {
+        "Latitude": 47.698595,
+        "Longitude": -117.032471
+      }
+    }
+  },
+  "NetworkOrder": ["West_Washington_Moderate_Metro", "East_Washington_Moderate_Metro", "NorthWest_Idaho_Escape"],
+  "Constellation": "Starlink"
+}

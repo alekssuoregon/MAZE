@@ -1,0 +1,36 @@
+{
+  "SimulationName": "Oregon_Idaho_Metro_Route_Around_Portland",
+  "SimulationDuration": 50,
+  "NetworkPoints": {
+    "NorthWest_Oregon_Moderate_Metro_Terra": {
+      "Type": "Terrestrial",
+      "Location": {
+        "Latitude": 45.589757,
+        "Longitude": -123.950366
+      }
+    },
+    "West_Portland_Moderate_Metro": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 123.0968990,
+        "Longitude": 45.5195137
+      }
+    },
+    "East_Portland_Moderate_Metro": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 122.1594740,
+        "Longitude": 45.5579819
+      }
+    },
+    "SouthWest_Idaho_Escape": {
+      "Type": "Terrestrial",
+      "Location": {
+        "Latitude": 44.003485,
+        "Longitude": -116.935413
+      }
+    }
+  },
+  "NetworkOrder": ["NorthWest_Oregon_Moderate_Metro_Terra", "West_Portland_Moderate_Metro", "East_Portland_Moderate_Metro", "SouthWest_Idaho_Escape"],
+  "Constellation": "Starlink"
+}

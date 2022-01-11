@@ -1,0 +1,29 @@
+{
+  "SimulationName": "Seattle_California_Longhaul_Route_Around_Seattle",
+  "SimulationDuration": 50,
+  "NetworkPoints": {
+    "North_Seattle_ModerateHigh_LongHaul": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 122.7502469,
+        "Longitude": 48.9995047
+      }
+    },
+    "North_Portland_Moderate_LongHaul": {
+      "Type": "GroundStation",
+      "Location": {
+        "Latitude": 122.7502469,
+        "Longitude": 45.8111092
+      }
+    },
+    "North_California_Escape_LongHaul": {
+      "Type": "Terrestrial",
+      "Location": {
+        "Latitude": 42.006811,
+        "Longitude": -122.615055
+      }
+    },
+  },
+  "NetworkOrder": ["North_Seattle_ModerateHigh_LongHaul", "North_Portland_Moderate_LongHaul", "North_California_Escape_LongHaul"],
+  "Constellation": "Starlink"
+}

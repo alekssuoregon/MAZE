@@ -5,14 +5,14 @@
     "North_Seattle_ModerateHigh_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 122.7502469,
+        "Longitude": -122.7502469,
         "Latitude": 48.9995047
       }
     },
     "North_Portland_Moderate_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 122.7502469,
+        "Longitude": -122.7502469,
         "Latitude": 45.8111092
       }
     },

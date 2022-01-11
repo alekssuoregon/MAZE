@@ -12,14 +12,14 @@
     "West_Portland_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 123.0968990,
+        "Longitude": -123.0968990,
         "Latitude": 45.5195137
       }
     },
     "East_Oregon_Light_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 119.0734984,
+        "Longitude": -119.0734984,
         "Latitude": 45.9364335
       }
     },

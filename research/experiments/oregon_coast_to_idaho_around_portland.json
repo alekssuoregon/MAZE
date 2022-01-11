@@ -12,14 +12,14 @@
     "West_Portland_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 123.0968990,
+        "Longitude": -123.0968990,
         "Latitude": 45.5195137
       }
     },
     "East_Portland_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 122.1594740,
+        "Longitude": -122.1594740,
         "Latitude": 45.5579819
       }
     },

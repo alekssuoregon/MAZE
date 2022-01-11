@@ -5,21 +5,21 @@
     "West_Washington_Moderate_Metro_Terra": {
       "Type": "Terrestrial",
       "Location": {
-        "Longitude": 124.7475777,
+        "Longitude": -124.7475777,
         "Latitude": 48.1665485
       }
     },
     "West_Seattle_ModerateHigh_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 124.3832924,
+        "Longitude": -124.3832924,
         "Latitude": 47.6144850
       }
     },
     "East_Seattle_ModerateHigh_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 121.338718,
+        "Longitude": -121.338718,
         "Latitude": 47.2896012
       }
     },

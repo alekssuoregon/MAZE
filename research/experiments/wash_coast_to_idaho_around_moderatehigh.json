@@ -5,14 +5,14 @@
     "West_Washington_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 124.7475777,
+        "Longitude": -124.7475777,
         "Latitude": 48.1665485
       }
     },
     "East_Washington_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 120.0110503,
+        "Longitude": -120.0110503,
         "Latitude": 47.7192189
       }
     },

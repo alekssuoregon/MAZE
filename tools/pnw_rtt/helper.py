@@ -12,7 +12,7 @@ from sat_relay_sim import GroundstationMap, SatelliteNetworkState, SatelliteRela
 from terrestrial_simulator import DistanceBasedPingCalculator
 
 class PNWDistanceBasedRTTSimulator(NetworkSimulator, DistanceBasedPingCalculator):
-    _seattle_to_la_km = DistanceBasedPingCalculator._crow_flies_distance(47.6062, 122.3321, 34.0522, 118.2437)
+    _seattle_to_la_km = DistanceBasedPingCalculator._crow_flies_distance(47.6062, -122.3321, 34.0522, -118.2437)
     _seattle_to_la_rtt_ms = 32.986
 
     def __init__(self, datapoints_per):

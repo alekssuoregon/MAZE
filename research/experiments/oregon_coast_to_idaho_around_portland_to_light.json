@@ -12,15 +12,15 @@
     "West_Portland_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Latitude": 123.0968990,
-        "Longitude": 45.5195137
+        "Longitude": 123.0968990,
+        "Latitude": 45.5195137
       }
     },
     "East_Oregon_Light_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Latitude": 119.0734984,
-        "Longitude": 45.9364335
+        "Longitude": 119.0734984,
+        "Latitude": 45.9364335
       }
     },
     "SouthWest_Idaho_Escape": {

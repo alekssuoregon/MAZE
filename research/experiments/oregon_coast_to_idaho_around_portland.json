@@ -12,15 +12,15 @@
     "West_Portland_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Latitude": 123.0968990,
-        "Longitude": 45.5195137
+        "Longitude": 123.0968990,
+        "Latitude": 45.5195137
       }
     },
     "East_Portland_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Latitude": 122.1594740,
-        "Longitude": 45.5579819
+        "Longitude": 122.1594740,
+        "Latitude": 45.5579819
       }
     },
     "SouthWest_Idaho_Escape": {

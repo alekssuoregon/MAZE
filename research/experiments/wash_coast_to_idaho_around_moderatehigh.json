@@ -5,29 +5,15 @@
     "West_Washington_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Latitude": 124.7475777,
-        "Longitude": 48.1665485
-      }
-    },
-    "West_Seattle_ModerateHigh_Metro": {
-      "Type": "GroundStation",
-      "Location": {
-        "Latitude": 124.3832924,
-        "Longitude": 47.6144850
-      }
-    },
-    "East_Seattle_ModerateHigh_Metro": {
-      "Type": "GroundStation",
-      "Location": {
-        "Latitude": 121.338718,
-        "Longitude": 47.2896012
+        "Longitude": 124.7475777,
+        "Latitude": 48.1665485
       }
     },
     "East_Washington_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Latitude": 120.0110503,
-        "Longitude": 47.7192189
+        "Longitude": 120.0110503,
+        "Latitude": 47.7192189
       }
     },
     "NorthWest_Idaho_Escape": {

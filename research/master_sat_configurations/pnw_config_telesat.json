@@ -115,6 +115,6 @@
       }
     }
   },
-  "NetworkOrder": [],
+  "NetworkOrder": ["North_Portland_Moderate_LongHaul", "South_Portland_Moderate_LongHaul", "South_Salem_Light_LongHaul", "West_Washington_Moderate_Metro", "West_Seattle_ModerateHigh_Metro", "East_Seattle_ModerateHigh_Metro", "East_Washington_Moderate_Metro", "SouthEast_Seattle_Moderate_Metro", "North_Seattle_ModerateHigh_LongHaul", "South_Seattle_ModerateHigh_LongHaul", "West_Salem_Moderate_Metro", "Direct_Eugene_Light_LongHaul", "East_Medford_Moderate_LongHaul", "West_Portland_Moderate_Metro", "East_Portland_Moderate_Metro", "East_Oregon_Light_Metro"],
   "Constellation": "Telesat"
 }

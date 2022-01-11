@@ -5,112 +5,112 @@
     "North_Portland_Moderate_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 122.7502469,
+        "Longitude": -122.7502469,
         "Latitude": 45.8111092
       }
     },
     "South_Portland_Moderate_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 122.7692691,
+        "Longitude": -122.7692691,
         "Latitude": 45.2361496
       }
     },
     "South_Salem_Light_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 123.1497130,
+        "Longitude": -123.1497130,
         "Latitude": 44.3284905
       }
     },
     "West_Washington_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 124.7475777,
+        "Longitude": -124.7475777,
         "Latitude": 48.1665485
       }
     },
     "West_Seattle_ModerateHigh_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 124.3832924,
+        "Longitude": -124.3832924,
         "Latitude": 47.6144850
       }
     },
     "East_Seattle_ModerateHigh_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 121.338718,
+        "Longitude": -121.338718,
         "Latitude": 47.2896012
       }
     },
     "East_Washington_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 120.0110503,
+        "Longitude": -120.0110503,
         "Latitude": 47.7192189
       }
     },
     "SouthEast_Seattle_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 119.9730059,
+        "Longitude": -119.9730059,
         "Latitude": 46.5510305
       }
     },
     "North_Seattle_ModerateHigh_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 122.7502469,
+        "Longitude": -122.7502469,
         "Latitude": 48.9995047
       }
     },
     "South_Seattle_ModerateHigh_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 122.9024244,
+        "Longitude": -122.9024244,
         "Latitude": 46.3538199
       }
     },
     "West_Salem_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 124.0627786,
+        "Longitude": -124.0627786,
         "Latitude": 44.8721048
       }
     },
     "Direct_Eugene_Light_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 123.0926464,
+        "Longitude": -123.0926464,
         "Latitude": 44.0684798
       }
     },
     "East_Medford_Moderate_LongHaul": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 121.8562035,
+        "Longitude": -121.8562035,
         "Latitude": 42.3714295
       }
     },
     "West_Portland_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 123.0968990,
+        "Longitude": -123.0968990,
         "Latitude": 45.5195137
       }
     },
     "East_Portland_Moderate_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 122.1594740,
+        "Longitude": -122.1594740,
         "Latitude": 45.5579819
       }
     },
     "East_Oregon_Light_Metro": {
       "Type": "GroundStation",
       "Location": {
-        "Longitude": 119.0734984,
+        "Longitude": -119.0734984,
         "Latitude": 45.9364335
       }
     }

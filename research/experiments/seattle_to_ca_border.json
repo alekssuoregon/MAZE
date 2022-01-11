@@ -22,7 +22,7 @@
         "Latitude": 42.006811,
         "Longitude": -122.615055
       }
-    },
+    }
   },
   "NetworkOrder": ["North_Seattle_ModerateHigh_LongHaul", "North_Portland_Moderate_LongHaul", "North_California_Escape_LongHaul"],
   "Constellation": "Starlink"

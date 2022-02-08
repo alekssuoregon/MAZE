@@ -100,7 +100,7 @@ class PNWMixedNetworkEveryPairRTTSimulator(PNWMixedNetworkRTTSimulator):
 
     def generate_rtts(self):
         for i in range(self._datapoints_per_run):
-            rtts = [0 for _ in len(self._network_segments)]
+            rtts = [0 for _ in range(len(self._network_segments))]
             for i in range(len(self._network_segments)):
                 rtts[i] = next(self._network_segments[i])
             yield tuple(rtts)

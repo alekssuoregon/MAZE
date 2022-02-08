@@ -26,9 +26,11 @@ config file format: JSON
         ...
     },
     "NetworkOrder": ["{Point Name 1}", ..., "{Point Name N}"],
+    OR
     "Constellation": Starlink" | "Kuiper" | "Telesat"
 }
 """
+
 
 class SimulationConfig():
     def __init__(self, config_fname):

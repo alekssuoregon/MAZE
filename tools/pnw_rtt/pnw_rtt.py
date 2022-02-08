@@ -14,6 +14,7 @@ def read_options():
     parser = argparse.ArgumentParser(description="Simulate RTT time for a mixed ground-satellite network in the PNW")
     parser.add_argument("-g", "--gen-state", action="store_true", help="generate the required network state")
     parser.add_argument("-r", "--run", action="store_true", help="run simulation")
+    parser.add_argument("-a", "--all-pairs", action="store_true", help="Calculate RTT between all pairs of nodes not just a simple path")
     parser.add_argument("config", type=str, help="simulation config file")
     parser.add_argument("path", type=str, help="folder to run simulation in and store generated state")
 
@@ -43,18 +44,24 @@ def main():
     if args.run:
         logging.info("Calculating Round Trip Time for specified mixed-network path...")
         rtt_file_path = sim_path + "/calculated_rtts.txt"
-        simulator = PNWMixedNetworkRTTSimulator(config, sim_path, gs_map)
+        simulator = None
+        if args.all_pairs:
+            simulator = PNWMixedNetworkEveryPairRTTSimulator(config, sim_path, gs_map)
+        else:
+            simulator = PNWMixedNetworkPathRTTSimulator(config, sim_path, gs_map)
 
-        avg_rtt = 0
+        avg_rtt = [0 for _ in range(len(simulator.get_param_order()))]
         try:
             with open(rtt_file_path, 'w') as fp:
                 writer = csv.writer(fp)
+                writer.writerow(["timestep"] + list(simulator.get_param_order()))
                 i = 0
                 for rtt in simulator.generate_rtts():
-                    avg_rtt += rtt
-                    writer.writerow([i, rtt])
+                    for i in range(len(rtt)):
+                        avg_rtt[i] += rtt[i]
+                    writer.writerow([i] + list(rtt))
                     i += 1
-                logging.info("Average calculated RTT -> " + str(avg_rtt / i))
+                logging.info("Average calculated RTT -> " + str([avg_rtt[j] / i for j in range(len(avg_rtt))]))
             logging.info("Simulation results written to " + rtt_file_path)
         except OSError as e:
             logging.error("Failed to write simulation results to " + rtt_file_path + " -> " + str(e))

@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+from abc import ABC, abstractmethod
 sys.path.append(os.path.abspath("../../rtt_simulator"))
 sys.path.append(os.path.abspath(".."))
 
@@ -27,22 +28,37 @@ class PNWDistanceBasedRTTSimulator(NetworkSimulator, DistanceBasedPingCalculator
         calculated_rtt = self.rtt_between(lat1, long1, lat2, long2)
         return (calculated_rtt for i in range(self._datapoints_per_run))
 
-class PNWMixedNetworkRTTSimulator():
+class PNWMixedNetworkRTTSimulator(ABC, NetworkSimulator):
     def __init__(self, config, project_dir, gs_map):
         self._config = config
         self._project_dir = project_dir
         self._network_segments = None
         self._datapoints_per_run = 0
         self._groundstation_map = gs_map
-        self._create_sim_resources()
+        self._network_segments = []
 
-    def _create_sim_resources(self):
         self._datapoints_per_run = int((self._config.duration() * 1000) / constants.TIMESTEP_MS)
         terra_simulator = PNWDistanceBasedRTTSimulator(self._datapoints_per_run)
 
         state_dir = self._project_dir + "/" + self._config.constellation().name
         exterra_simulator = SatelliteRelaySimulator(self._groundstation_map, self._config.duration(), state_dir, self._project_dir, os.path.abspath("../../satgenpy"))
         net_segment.NetworkSegment.configure(exterra_simulator, terra_simulator)
+        self._populate_network_segments()
+
+    @abstractmethod
+    def _populate_network_segments(self):
+        pass
+
+    @abstractmethod
+    def get_param_order(self):
+        pass
+
+
+class PNWMixedNetworkPathRTTSimulator(PNWMixedNetworkRTTSimulator):
+    def __init__(self, config, project_dir, gs_map):
+        super().__init__(config, project_dir, gs_map)
+
+    def _populate_network_segments(self):
         self._network_segments = []
 
         cur_point = None
@@ -55,12 +71,41 @@ class PNWMixedNetworkRTTSimulator():
                 new_seg = net_segment.NetworkSegment(past_point, cur_point)
                 self._network_segments.append(new_seg.get_rtts())
 
+    def get_param_order(self):
+        return ("path")
+
     def generate_rtts(self):
         for i in range(self._datapoints_per_run):
             total_rtt = 0.0
             for segment in self._network_segments:
                 total_rtt += next(segment)
-            yield total_rtt
+            yield (total_rtt)
+
+class PNWMixedNetworkEveryPairRTTSimulator(PNWMixedNetworkRTTSimulator):
+    def __init__(self, config, project_dir, gs_map):
+        super().__init__(config, project_dir, gs_map)
+
+    def _populate_network_segments(self):
+        self._network_segments = []
+        self._segment_header = []
+        for network_point_a in self._config.network_points():
+            for network_point_b in self._config.network_points():
+                if network_point_a != network_point_b:
+                    new_seg = net_segment.NetworkSegment(network_point_a, network_point_b)
+                    self._network_segments.append(new_seg.get_rtts())
+                    self._segment_header.append(network_point_a.name() + "/" + network_point_b.name())
+
+    def get_param_order(self):
+        return tuple(self._segment_header)
+
+    def generate_rtts(self):
+        for i in range(self._datapoints_per_run):
+            rtts = [0 for _ in len(self._network_segments)]
+            for i in range(len(self._network_segments)):
+                rtts[i] = next(self._network_segments[i])
+            yield tuple(rtts)
+
+
 
 def retrieve_network_state(config, output_dir, gen_state=False):
     gs_map = None

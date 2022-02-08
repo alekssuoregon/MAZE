@@ -91,7 +91,7 @@ class PNWMixedNetworkEveryPairRTTSimulator(PNWMixedNetworkRTTSimulator):
         seen = set()
         for network_point_a in self._config.network_points():
             for network_point_b in self._config.network_points():
-                header = "/".join(sorted([network_point_a.name(), network_point_b.name]))
+                header = "/".join(sorted([network_point_a.name(), network_point_b.name()]))
                 if network_point_a != network_point_b and header not in seen:
                     new_seg = net_segment.NetworkSegment(network_point_a, network_point_b)
                     self._network_segments.append(new_seg.get_rtts())

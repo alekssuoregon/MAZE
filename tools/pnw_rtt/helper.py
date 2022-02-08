@@ -88,12 +88,15 @@ class PNWMixedNetworkEveryPairRTTSimulator(PNWMixedNetworkRTTSimulator):
     def _populate_network_segments(self):
         self._network_segments = []
         self._segment_header = []
+        seen = set()
         for network_point_a in self._config.network_points():
             for network_point_b in self._config.network_points():
-                if network_point_a != network_point_b:
+                header = "/".join(sorted([network_point_a.name(), network_point_b.name]))
+                if network_point_a != network_point_b and header not in seen:
                     new_seg = net_segment.NetworkSegment(network_point_a, network_point_b)
                     self._network_segments.append(new_seg.get_rtts())
-                    self._segment_header.append(network_point_a.name() + "/" + network_point_b.name())
+                    self._segment_header.append(header)
+                    seen.add(header)
 
     def get_param_order(self):
         return tuple(self._segment_header)

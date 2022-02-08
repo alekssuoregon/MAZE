@@ -79,7 +79,7 @@ class PNWMixedNetworkPathRTTSimulator(PNWMixedNetworkRTTSimulator):
             total_rtt = 0.0
             for segment in self._network_segments:
                 total_rtt += next(segment)
-            yield (total_rtt)
+            yield tuple([total_rtt])
 
 class PNWMixedNetworkEveryPairRTTSimulator(PNWMixedNetworkRTTSimulator):
     def __init__(self, config, project_dir, gs_map):

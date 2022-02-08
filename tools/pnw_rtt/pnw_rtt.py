@@ -61,7 +61,6 @@ def main():
                         avg_rtt[i] += rtt[i]
                     writer.writerow([i] + list(rtt))
                     i += 1
-                logging.info("Average calculated RTT -> " + str([avg_rtt[j] / i for j in range(len(avg_rtt))]))
             logging.info("Simulation results written to " + rtt_file_path)
         except OSError as e:
             logging.error("Failed to write simulation results to " + rtt_file_path + " -> " + str(e))

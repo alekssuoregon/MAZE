@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath("../../rtt_simulator"))
 sys.path.append(os.path.abspath("../../satgenpy"))
 
 from sim_config import SimulationConfig
-from helper import PNWMixedNetworkRTTSimulator, retrieve_network_state
+from helper import PNWMixedNetworkPathRTTSimulator, PNWMixedNetworkEveryPairRTTSimulator, retrieve_network_state
 
 def read_options():
     parser = argparse.ArgumentParser(description="Simulate RTT time for a mixed ground-satellite network in the PNW")

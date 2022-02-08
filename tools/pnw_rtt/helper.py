@@ -72,7 +72,7 @@ class PNWMixedNetworkPathRTTSimulator(PNWMixedNetworkRTTSimulator):
                 self._network_segments.append(new_seg.get_rtts())
 
     def get_param_order(self):
-        return ("path")
+        return tuple(["path"])
 
     def generate_rtts(self):
         for i in range(self._datapoints_per_run):

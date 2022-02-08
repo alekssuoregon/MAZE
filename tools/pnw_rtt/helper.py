@@ -28,7 +28,7 @@ class PNWDistanceBasedRTTSimulator(NetworkSimulator, DistanceBasedPingCalculator
         calculated_rtt = self.rtt_between(lat1, long1, lat2, long2)
         return (calculated_rtt for i in range(self._datapoints_per_run))
 
-class PNWMixedNetworkRTTSimulator(ABC, NetworkSimulator):
+class PNWMixedNetworkRTTSimulator(NetworkSimulator):
     def __init__(self, config, project_dir, gs_map):
         self._config = config
         self._project_dir = project_dir

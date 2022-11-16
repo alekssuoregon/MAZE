@@ -2,6 +2,7 @@ import csv
 import argparse
 import os
 from collections import defaultdict
+import statistics
 
 class RTTSectorPointMap():
     def __init__(self):
@@ -18,16 +19,76 @@ class RTTSectorPointMap():
         left, right = self._find_key_order(source, dest)
         self._map[left[0]][left[1]][right[0]][right[1]] = rtt
 
+    def remove(self, sector):
+        del self._map[sector]
+        for sect in self._map:
+            for point in self._map[sect]:
+                if sector in self._map[sect][point]:
+                    del self._map[sect][point][sector]
+
     def get(self, source, dest):
         left, right = self._find_key_order(source, dest)
         return self._map[left[0]][left[1]][right[0]][right[1]]
 
+    def print(self):
+        for sector in self._map:
+            for point in self._map[sector]:
+                for s2 in self._map[sector][point]:
+                    for p2 in self._map[sector][point][s2]:
+                        print(sector + "," + point + "->" + s2 + "," + p2 + "=" + str(self._map[sector][point][s2][p2]))
+
+def get_optimal_configuration(avg_map):
+    configuration = {}
+    for sect, points in avg_map.items():
+        best_point = ""
+        min_rtt = 2**32 - 1
+        for point, rtt in points.items():
+            if rtt < min_rtt:
+                best_point = point
+                min_rtt = rtt
+        configuration[sect] = (best_point, min_rtt)
+    return configuration
+
 
 def read_rtt_data(fp):
-    """
+    headers = fp.readline().strip().split(",")[1:]
+    rtts = [0.0 for _ in range(len(headers))]
+
+    total_entries = 0
+    for line in fp:
+        entry = line.strip().split(",")
+        total_entries += 1
+        for i in range(1, len(entry)):
+            rtts[i-1] += float(entry[i])
+
+    for i in range(len(rtts)):
+        rtts[i] /= total_entries
+
+
+    points_map = defaultdict(lambda: defaultdict(lambda: []))
+    for i in range(len(headers)):
+        p1, p2 = headers[i].split("/")
+        sect1, point1 = p1.split("_")
+        sect2, point2 = p2.split("_")
+        points_map[sect1][point1].append(rtts[i])
+        points_map[sect2][point2].append(rtts[i])
+
+    avg_map = defaultdict(lambda: defaultdict(lambda: 0.0))
+    for sect, points in points_map.items():
+        for point, values in points.items():
+            avg_map[sect][point] = statistics.fmean(values)
+    return avg_map
+
+
+def run(filename):
+    avg_rtts = None
+    with open(filename, 'r') as fp:
+        avg_rtts = read_rtt_data(fp)
+    return get_optimal_configuration(avg_rtts)
+"""
+def read_rtt_data(fp):
     :param fp: File pointer
     :return: (Dictionary mapping Sectors->points and Dictionary RTTSectorPointMap object)
-    """
     header = fp.readline().strip().split(",")[1:]
     rtts = [0.0 for _ in range(len(header))]
 
@@ -54,7 +115,7 @@ def read_rtt_data(fp):
         rtt_map.put(source_point, dest_point, rtts[i])
 
     return (sector_point_map, rtt_map)
-
+"""
 
 def find_optimal_configuration(sector_list, rtt_mapping):
     """
@@ -146,24 +207,44 @@ def preprocess_input(args, rtt_filename):
 
     for sector in exclusion_sectors:
         del sector_point_names[sector]
+        rtt_mapping.remove(sector)
 
     sector_list = create_sector_list(redundancies, sector_point_names)
     return (sector_list, rtt_mapping)
+
+def create_output(optimal_config):
+    keys = []
+    for key, _ in optimal_config.items():
+        keys.append(key)
+    keys.sort(key=lambda x: int(x.lstrip("Sector")))
+
+    line1 = []
+    line2 = []
+    total_avg = 0.0
+    for key in keys:
+        print(key + " -> " + optimal_config[key][0])
+        line1.append(optimal_config[key][0])
+        line2.append(str(optimal_config[key][1]))
+        total_avg += optimal_config[key][1]
+    print("Average RTT: " + str(total_avg / len(keys)))
+
+    return ','.join(keys) + '\n' + ','.join(line1) + '\n' + ','.join(line2)
 
 def main():
     args = read_options()
     rtt_filename = os.path.abspath(args.calculated_rtt_file)
     output_filename = os.path.abspath(args.output_file)
 
+    """
     sector_list, rtt_mapping = preprocess_input(args, rtt_filename)
     configurations = find_optimal_configuration(sector_list, rtt_mapping)
+    """
+    optimal = run(rtt_filename)
+    output = create_output(optimal)
 
-    print("Optimal Configuration: " + str(configurations[0]))
+    print("Optimal Configuration: ", optimal)
     with open(output_filename, "w") as fp:
-        for i in range(len(configurations)):
-            config = configurations[i]
-            line = str(i+1) + ", " + "Configuration: " + str(config[0]) + " | Average RTT->" + str(config[1]) + "\n"
-            fp.write(line)
+        fp.write(output)
 
 
 if __name__ == "__main__":

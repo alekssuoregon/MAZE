@@ -26,7 +26,11 @@ config file format: JSON
         ...
     },
     "NetworkOrder": ["{Point Name 1}", ..., "{Point Name N}"],
-    OR
+    "NetworkPathEnumerations": {
+        "{Path Name 1}": ["{Point Name 1}, ..., "{Point Name N}],
+        ...,
+        "{Path Name N}": [...]
+    }
     "Constellation": Starlink" | "Kuiper" | "Telesat"
 }
 """
@@ -37,8 +41,20 @@ class SimulationConfig():
         self._sim_name = ""
         self._duration = 0
         self._constellation = None
-        self._network_points = []
+        self._subsimulation_configs = None
+        self._all_points = None
         self.__load_config(config_fname)
+
+    def sub_simulations(self):
+        if self._subsimulation_configs is not None:
+            return self._subsimulation_configs
+
+    def all_points(self):
+        for point in self._all_points:
+            yield point
+
+    def duration(self):
+        return self._duration
 
     def __valid_config(self, config):
         def valid_point(network_point):
@@ -66,8 +82,21 @@ class SimulationConfig():
         valid = valid and constants.DURATION_KEY in config and isinstance(config[constants.DURATION_KEY], int) and \
                 config[constants.DURATION_KEY] > 0
         valid = valid and constants.NETWORK_POINTS_KEY in config and isinstance(config[constants.NETWORK_POINTS_KEY], dict)
-        valid = valid and constants.NETWORK_ORDER_KEY in config and isinstance(config[constants.NETWORK_ORDER_KEY], list) and \
-                len(config[constants.NETWORK_ORDER_KEY]) == len(set(config[constants.NETWORK_ORDER_KEY]))
+
+        #Validate path enumerations are of valid type and contain no loops
+        all_points = set()
+        valid = valid and constants.NETWORK_ENUMS_KEY in config and isinstance(config[constants.NETWORK_ENUMS_KEY], dict)
+        for key in config[constants.NETWORK_ENUMS_KEY]:
+            valid = valid and isinstance(key, str)
+            path = config[constants.NETWORK_ENUMS_KEY][key]
+
+            valid = valid and isinstance(path, list)
+            if valid:
+                for point in path:
+                    valid = valid and isinstance(point, str)
+                    all_points.add(point)
+
+        #Validate constellation type
         valid = valid and constants.CONSTELLATION_KEY in config and isinstance(config[constants.CONSTELLATION_KEY], str) and \
                 config[constants.CONSTELLATION_KEY] in ["Starlink", "Kuiper", "Telesat"]
 
@@ -79,15 +108,9 @@ class SimulationConfig():
         point_names = set(list(network_points.keys()))
         for point_name in point_names:
             cur_point = network_points[point_name]
-            if not isinstance(cur_point, dict) or not valid_point(cur_point):
-                return False
+            valid = valid and isinstance(cur_point, dict) and valid_point(cur_point)
 
-        network_order = config[constants.NETWORK_ORDER_KEY]
-        for point_name in network_order:
-            if point_name not in point_names:
-                return False
-
-        return True
+        return valid
 
     def __load_config(self, fname):
         if not os.path.isfile(fname):
@@ -108,7 +131,9 @@ class SimulationConfig():
         self._sim_name = config[constants.SIMULATION_NAME_KEY]
         self._duration = int(config[constants.DURATION_KEY])
 
-        for point_name in config[constants.NETWORK_ORDER_KEY]:
+        network_map = {}
+        self._all_points = []
+        for point_name in config[constants.NETWORK_POINTS_KEY]:
             point_def = config[constants.NETWORK_POINTS_KEY][point_name]
             type = point_def[constants.POINT_TYPE_KEY]
 
@@ -116,7 +141,16 @@ class SimulationConfig():
             longitude = point_def[constants.LOCATION_KEY][constants.LONGITUDE_KEY]
             network_point = NetworkPoint(point_name, type, latitude, longitude)
 
-            self._network_points.append(network_point)
+            network_map[point_name] = network_point
+            self._all_points.append(network_point)
+
+        path_enums = {}
+        for path_name in config[constants.NETWORK_ENUMS_KEY]:
+            path = config[constants.NETWORK_ENUMS_KEY][path_name]
+            path_network_points = []
+            for point_name in path:
+                path_network_points.append(network_map[point_name])
+            path_enums[path_name] = path_network_points
 
         if config[constants.CONSTELLATION_KEY] == "Starlink":
             self._constellation = constellation_config.GetStarlinkConfig()
@@ -124,6 +158,22 @@ class SimulationConfig():
             self._constellation = constellation_config.GetKuiperConfig()
         else:
             self._constellation = constellation_config.GetTelesatConfig()
+
+
+        self._subsimulation_configs = {}
+        for name in path_enums:
+            self._subsimulation_configs[name] = SubSimulationConfig(name, self._duration, self._constellation, path_enums[name])
+
+
+class SubSimulationConfig():
+    def __init__(self, name, duration, constellation, network_points):
+        self._sim_name = name
+        self._duration = duration
+        self._constellation = constellation
+        self._network_points = network_points
+
+    def name(self):
+        return self._sim_name
 
     def duration(self):
         return self._duration

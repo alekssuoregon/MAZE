@@ -2,6 +2,7 @@
 SIMULATION_NAME_KEY = "SimulationName"
 NETWORK_POINTS_KEY = "NetworkPoints"
 NETWORK_ORDER_KEY = "NetworkOrder"
+NETWORK_ENUMS_KEY = "NetworkPathEnumerations"
 CONSTELLATION_KEY = "Constellation"
 DURATION_KEY = "SimulationDuration"
 

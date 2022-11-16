@@ -1,4 +1,5 @@
 import math
+import random
 from network_simulator import NetworkSimulator
 
 class DistanceBasedPingCalculator():
@@ -10,9 +11,10 @@ class DistanceBasedPingCalculator():
     :param float distance_km: Distance between the two master points in kilometers
     :param float rtt_ms: Round Trip Time between the two master points
     """
-    def __init__(self, distance_km, rtt_ms):
+    def __init__(self, distance_km, rtt_ms, jitter_ms):
         self._distance_km = distance_km
         self._rtt_ms = rtt_ms
+        self._jitter_ms = jitter_ms
 
     @staticmethod
     def _crow_flies_distance(lat1, long1, lat2, long2):
@@ -42,4 +44,5 @@ class DistanceBasedPingCalculator():
         distance_percent = segment_distance / self._distance_km
 
         calculated_rtt = distance_percent * self._rtt_ms
+        calulated_rtt += float(self.randrange(0, self._jitter_ms * 100)) / 100.0
         return calculated_rtt

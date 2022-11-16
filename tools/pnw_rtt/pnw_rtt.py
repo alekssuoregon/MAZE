@@ -35,36 +35,39 @@ def main():
     if not os.path.exists(sim_path):
         os.mkdir(sim_path)
 
-    try:
-        gs_map = retrieve_network_state(config, sim_path, gen_state=args.gen_state)
-    except ValueError as e:
-        logging.error("Failed to retrieve satellite network state -> " + str(e))
-        return
 
     if args.run:
-        logging.info("Calculating Round Trip Time for specified mixed-network path...")
-        rtt_file_path = sim_path + "/calculated_rtts.txt"
-        simulator = None
-        if args.all_pairs:
-            simulator = PNWMixedNetworkEveryPairRTTSimulator(config, sim_path, gs_map)
-        else:
-            simulator = PNWMixedNetworkPathRTTSimulator(config, sim_path, gs_map)
-
-        avg_rtt = [0 for _ in range(len(simulator.get_param_order()))]
         try:
-            with open(rtt_file_path, 'w') as fp:
-                writer = csv.writer(fp)
-                writer.writerow(["timestep"] + list(simulator.get_param_order()))
-                i = 0
-                for rtt in simulator.generate_rtts():
-                    for i in range(len(rtt)):
-                        avg_rtt[i] += rtt[i]
-                    writer.writerow([i] + list(rtt))
-                    i += 1
-            logging.info("Simulation results written to " + rtt_file_path)
-        except OSError as e:
-            logging.error("Failed to write simulation results to " + rtt_file_path + " -> " + str(e))
+            gs_map = retrieve_network_state(config, sim_path, gen_state=args.gen_state)
+        except ValueError as e:
+            logging.error("Failed to retrieve satellite network state -> " + str(e))
             return
+
+        simulation_configs = config.sub_simulations()
+        for sub_config in simulation_configs:
+            logging.info("Calculating Round Trip Time for specified mixed-network path...")
+            rtt_file_path = sim_path + "/" + sub_config.name() + "_calculated_rtts.txt"
+            simulator = None
+            if args.all_pairs:
+                simulator = PNWMixedNetworkEveryPairRTTSimulator(sub_config, sim_path, gs_map)
+            else:
+                simulator = PNWMixedNetworkPathRTTSimulator(sub_config, sim_path, gs_map)
+
+            avg_rtt = [0 for _ in range(len(simulator.get_param_order()))]
+            try:
+                with open(rtt_file_path, 'w') as fp:
+                    writer = csv.writer(fp)
+                    writer.writerow(["timestep"] + list(simulator.get_param_order()))
+                    i = 0
+                    for rtt in simulator.generate_rtts():
+                        for i in range(len(rtt)):
+                            avg_rtt[i] += rtt[i]
+                        writer.writerow([i] + list(rtt))
+                        i += 1
+                logging.info("Simulation results written to " + rtt_file_path)
+            except OSError as e:
+                logging.error("Failed to write simulation results to " + rtt_file_path + " -> " + str(e))
+                return
 
 
 if __name__ == "__main__":

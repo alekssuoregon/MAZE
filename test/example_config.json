@@ -31,6 +31,9 @@
       }
     }
   },
-  "NetworkOrder": ["Seattle", "Portland", "San Francisco", "Los Angeles"],
+  "NetworkPathEnumerations": {
+    "P1": ["Seattle", "Portland", "San Francisco", "Los Angeles"],
+    "P2": ["Seattle", "Los Angeles", "San Francisco", "Portland"]
+  },
   "Constellation": "Starlink"
 }

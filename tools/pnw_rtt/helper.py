@@ -18,7 +18,7 @@ class PNWDistanceBasedRTTSimulator(NetworkSimulator, DistanceBasedPingCalculator
 
     def __init__(self, datapoints_per):
         NetworkSimulator.__init__(self)
-        DistanceBasedPingCalculator.__init__(self, PNWDistanceBasedRTTSimulator._seattle_to_la_km, PNWDistanceBasedRTTSimulator._seattle_to_la_rtt_ms)
+        DistanceBasedPingCalculator.__init__(self, PNWDistanceBasedRTTSimulator._seattle_to_la_km, PNWDistanceBasedRTTSimulator._seattle_to_la_rtt_ms, 5.0)
         self._datapoints_per_run = datapoints_per
 
     def generate_rtts(self, src, dst):
@@ -112,12 +112,11 @@ class PNWMixedNetworkEveryPairRTTSimulator(PNWMixedNetworkRTTSimulator):
 
 def retrieve_network_state(config, output_dir, gen_state=False):
     gs_map = None
-
     constellation = config.constellation()
     state_dir = output_dir + "/" + constellation.name
     if gen_state:
         logging.info("Generating satellite constellation state...")
-        state_generator = SatelliteNetworkState(constellation, config.network_points(), config.duration(), output_dir)
+        state_generator = SatelliteNetworkState(constellation, config.all_points(), config.duration(), output_dir)
         state_generator.create()
         gs_map = state_generator.groundstation_map(save_to_fname=state_dir+"/g_map.txt")
         gs_map.save()

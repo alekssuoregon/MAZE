@@ -1,0 +1,105 @@
+{
+  "SimulationName": "PAMEarthquakeAndWildfire",
+  "SimulationDuration": 100,
+  "NetworkPoints": {
+    "EQ_North_Strong_Shaking": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -122.354999,
+        "Latitude": 48.942342
+      }
+    },
+    "EQ_East_Strong_Shaking": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -121.075242,
+        "Latitude": 47.653671
+      }
+    },
+    "EQ_South_Strong_Shaking": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -122.190627,
+        "Latitude": 46.129351
+      }
+    },
+    "EQ_West_Strong_Shaking": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -124.139616,
+        "Latitude": 47.519049
+      }
+    },
+    "WF_Medford_North": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -123.429101,
+        "Latitude": 43.037110
+      }
+    },
+    "WF_Medford_East": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -123.118906,
+        "Latitude": 42.562121
+      }
+    },
+    "WF_Medford_South": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -123.550482,
+        "Latitude": 41.903061
+      }
+    },
+    "WF_Medford_West": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -124.009031,
+        "Latitude": 42.273382
+      }
+    },
+    "WF_Salem_North": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -121.968654,
+        "Latitude": 45.551789
+      }
+    },
+    "WF_Salem_East": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -121.232270,
+        "Latitude": 44.800478
+      }
+    },
+    "WF_Salem_South": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -121.968654,
+        "Latitude": 44.676592
+      }
+    },
+    "WF_Salem_West": {
+      "Type": "GroundStation",
+      "Location": {
+        "Longitude": -122.491874,
+        "Latitude": 44.882921
+      }
+    }
+  },
+  "NetworkOrder": [
+    "EQ_North_Strong_Shaking",
+    "EQ_East_Strong_Shaking",
+    "EQ_South_Strong_Shaking",
+    "EQ_West_Strong_Shaking",
+    "WF_Medford_North",
+    "WF_Medford_East",
+    "WF_Medford_South",
+    "WF_Medford_West",
+    "WF_Salem_North",
+    "WF_Salem_East",
+    "WF_Salem_South",
+    "WF_Salem_West"
+  ],
+  "Constellation": "Starlink"
+}

@@ -1,0 +1,1265 @@
+{
+    "SimulationName": "None",
+    "SimulationDuration": 50,
+    "NetworkPoints": {
+        "Sector1_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 42.9969893,
+                "Longitude": -120.9734216
+            }
+        },
+        "Sector1_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.2992487,
+                "Longitude": -120.9527812
+            }
+        },
+        "Sector1_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.419731,
+                "Longitude": -121.2623873
+            }
+        },
+        "Sector1_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.629995,
+                "Longitude": -121.4687914
+            }
+        },
+        "Sector1_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.8395208,
+                "Longitude": -121.3862297
+            }
+        },
+        "Sector1_point6": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.0483084,
+                "Longitude": -121.2830277
+            }
+        },
+        "Sector1_point7": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.2711898,
+                "Longitude": -121.1798257
+            }
+        },
+        "Sector1_point8": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.4932235,
+                "Longitude": -121.1798257
+            }
+        },
+        "Sector1_point9": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.7144093,
+                "Longitude": -121.0766236
+            }
+        },
+        "Sector1_point10": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.0036303,
+                "Longitude": -121.1385449
+            }
+        },
+        "Sector1_point11": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.9141726,
+                "Longitude": -120.89086
+            }
+        },
+        "Sector1_point12": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.7946846,
+                "Longitude": -120.5193327
+            }
+        },
+        "Sector1_point13": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.6599724,
+                "Longitude": -120.230367
+            }
+        },
+        "Sector1_point14": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.5850005,
+                "Longitude": -119.9001205
+            }
+        },
+        "Sector1_point15": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.5699948,
+                "Longitude": -119.6111548
+            }
+        },
+        "Sector2_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 42.9363568,
+                "Longitude": -123.3264279
+            }
+        },
+        "Sector2_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.1029514,
+                "Longitude": -123.42963
+            }
+        },
+        "Sector2_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.3293919,
+                "Longitude": -123.3470683
+            }
+        },
+        "Sector2_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.5850005,
+                "Longitude": -123.2645067
+            }
+        },
+        "Sector2_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.5099345,
+                "Longitude": -123.5534724
+            }
+        },
+        "Sector3_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.6599724,
+                "Longitude": -123.7392361
+            }
+        },
+        "Sector3_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 43.7348502,
+                "Longitude": -124.1107634
+            }
+        },
+        "Sector3_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.0036303,
+                "Longitude": -124.1314038
+            }
+        },
+        "Sector3_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.0334194,
+                "Longitude": -123.7805169
+            }
+        },
+        "Sector3_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.0631935,
+                "Longitude": -123.4709108
+            }
+        },
+        "Sector3_point6": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.1524252,
+                "Longitude": -124.1520442
+            }
+        },
+        "Sector3_point7": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.2563574,
+                "Longitude": -124.1314038
+            }
+        },
+        "Sector3_point8": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.4193065,
+                "Longitude": -124.1107634
+            }
+        },
+        "Sector4_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.67024,
+                "Longitude": -124.090123
+            }
+        },
+        "Sector4_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.6407749,
+                "Longitude": -123.8630785
+            }
+        },
+        "Sector4_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.6112948,
+                "Longitude": -123.636034
+            }
+        },
+        "Sector4_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.8026462,
+                "Longitude": -124.0694826
+            }
+        },
+        "Sector4_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 44.9494063,
+                "Longitude": -124.0488422
+            }
+        },
+        "Sector4_point6": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.0080048,
+                "Longitude": -123.6773148
+            }
+        },
+        "Sector4_point7": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.139631,
+                "Longitude": -124.0282017
+            }
+        },
+        "Sector4_point8": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.2855244,
+                "Longitude": -123.8630785
+            }
+        },
+        "Sector5_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.4600993,
+                "Longitude": -123.8630785
+            }
+        },
+        "Sector5_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.5471833,
+                "Longitude": -123.6153936
+            }
+        },
+        "Sector5_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.6341317,
+                "Longitude": -123.4502704
+            }
+        },
+        "Sector5_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.5471833,
+                "Longitude": -123.9662805
+            }
+        },
+        "Sector5_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.8076219,
+                "Longitude": -123.8011573
+            }
+        },
+        "Sector5_point6": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.8509097,
+                "Longitude": -123.9662805
+            }
+        },
+        "Sector5_point7": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.9805698,
+                "Longitude": -123.9456401
+            }
+        },
+        "Sector5_point8": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.8797494,
+                "Longitude": -123.6566744
+            }
+        },
+        "Sector5_point9": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.7931851,
+                "Longitude": -123.4502704
+            }
+        },
+        "Sector5_point10": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.9517828,
+                "Longitude": -123.4502704
+            }
+        },
+        "Sector5_point11": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.0955673,
+                "Longitude": -123.7598765
+            }
+        },
+        "Sector5_point12": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.9373837,
+                "Longitude": -123.1613047
+            }
+        },
+        "Sector5_point13": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.8076219,
+                "Longitude": -122.9549006
+            }
+        },
+        "Sector6_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.7354002,
+                "Longitude": -122.5627329
+            }
+        },
+        "Sector6_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.5326787,
+                "Longitude": -122.6659349
+            }
+        },
+        "Sector6_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.2855244,
+                "Longitude": -122.7484966
+            }
+        },
+        "Sector6_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.5326787,
+                "Longitude": -122.3356884
+            }
+        },
+        "Sector6_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.6630844,
+                "Longitude": -122.0260823
+            }
+        },
+        "Sector6_point6": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.7209446,
+                "Longitude": -121.7164762
+            }
+        },
+        "Sector6_point7": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.3728797,
+                "Longitude": -122.108644
+            }
+        },
+        "Sector6_point8": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.2855244,
+                "Longitude": -121.7783975
+            }
+        },
+        "Sector6_point9": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.5036582,
+                "Longitude": -121.7783975
+            }
+        },
+        "Sector7_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.5471833,
+                "Longitude": -121.5307126
+            }
+        },
+        "Sector7_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.5616841,
+                "Longitude": -121.2211065
+            }
+        },
+        "Sector7_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.1250209,
+                "Longitude": -121.3036681
+            }
+        },
+        "Sector7_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.1834386,
+                "Longitude": -121.0559832
+            }
+        },
+        "Sector7_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.401968,
+                "Longitude": -121.1179044
+            }
+        },
+        "Sector7_point6": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.7209446,
+                "Longitude": -121.3862297
+            }
+        },
+        "Sector7_point7": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.6630844,
+                "Longitude": -120.89086
+            }
+        },
+        "Sector7_point8": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.7354002,
+                "Longitude": -120.6844559
+            }
+        },
+        "Sector8_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.7064852,
+                "Longitude": -120.2716478
+            }
+        },
+        "Sector8_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.7643002,
+                "Longitude": -120.1065245
+            }
+        },
+        "Sector8_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.8653314,
+                "Longitude": -119.776278
+            }
+        },
+        "Sector8_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.8653314,
+                "Longitude": -119.5492336
+            }
+        },
+        "Sector9_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.267612,
+                "Longitude": -119.5079528
+            }
+        },
+        "Sector9_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.267612,
+                "Longitude": -119.9414013
+            }
+        },
+        "Sector9_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.39629,
+                "Longitude": -120.2716478
+            }
+        },
+        "Sector9_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.5389082,
+                "Longitude": -120.230367
+            }
+        },
+        "Sector9_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.5531494,
+                "Longitude": -119.9207609
+            }
+        },
+        "Sector9_point6": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.6242987,
+                "Longitude": -119.6524356
+            }
+        },
+        "Sector10_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.3446568,
+                "Longitude": -119.8794801
+            }
+        },
+        "Sector10_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.512734,
+                "Longitude": -119.5905144
+            }
+        },
+        "Sector10_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.7359973,
+                "Longitude": -120.0652437
+            }
+        },
+        "Sector10_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.8750497,
+                "Longitude": -119.7969184
+            }
+        },
+        "Sector10_point5": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.027575,
+                "Longitude": -119.5079528
+            }
+        },
+        "Sector11_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.7237499,
+                "Longitude": -123.8424381
+            }
+        },
+        "Sector11_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.5816204,
+                "Longitude": -123.532832
+            }
+        },
+        "Sector12_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.9362394,
+                "Longitude": -123.7392361
+            }
+        },
+        "Sector12_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.9079563,
+                "Longitude": -124.090123
+            }
+        },
+        "Sector12_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.0633275,
+                "Longitude": -124.1520442
+            }
+        },
+        "Sector12_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.1478839,
+                "Longitude": -123.9249997
+            }
+        },
+        "Sector13_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.4707654,
+                "Longitude": -123.9249997
+            }
+        },
+        "Sector13_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.5406944,
+                "Longitude": -124.2552462
+            }
+        },
+        "Sector13_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.3727072,
+                "Longitude": -124.3378078
+            }
+        },
+        "Sector14_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.7359973,
+                "Longitude": -124.4616503
+            }
+        },
+        "Sector14_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.7916632,
+                "Longitude": -124.2758866
+            }
+        },
+        "Sector14_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.9583015,
+                "Longitude": -124.4410099
+            }
+        },
+        "Sector15_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.1796476,
+                "Longitude": -124.2552462
+            }
+        },
+        "Sector15_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.1796476,
+                "Longitude": -124.5854927
+            }
+        },
+        "Sector15_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.3587864,
+                "Longitude": -124.5442119
+            }
+        },
+        "Sector16_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.1796476,
+                "Longitude": -124.0075613
+            }
+        },
+        "Sector16_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.0829265,
+                "Longitude": -123.8837189
+            }
+        },
+        "Sector16_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.1244008,
+                "Longitude": -123.5947532
+            }
+        },
+        "Sector17_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.2210434,
+                "Longitude": -123.4089896
+            }
+        },
+        "Sector17_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.096755,
+                "Longitude": -123.2645067
+            }
+        },
+        "Sector17_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.0414185,
+                "Longitude": -123.0374622
+            }
+        },
+        "Sector18_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.6741778,
+                "Longitude": -122.5008117
+            }
+        },
+        "Sector18_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.5783981,
+                "Longitude": -122.3976096
+            }
+        },
+        "Sector19_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.4275178,
+                "Longitude": -122.6040137
+            }
+        },
+        "Sector19_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.3312677,
+                "Longitude": -122.6659349
+            }
+        },
+        "Sector19_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.2210434,
+                "Longitude": -122.6659349
+            }
+        },
+        "Sector20_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.9166925,
+                "Longitude": -122.8929794
+            }
+        },
+        "Sector20_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.7499194,
+                "Longitude": -122.9342602
+            }
+        },
+        "Sector20_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.7499194,
+                "Longitude": -122.6452945
+            }
+        },
+        "Sector21_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.3446568,
+                "Longitude": -123.0993835
+            }
+        },
+        "Sector21_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.288511,
+                "Longitude": -122.9961814
+            }
+        },
+        "Sector21_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.4007426,
+                "Longitude": -122.769137
+            }
+        },
+        "Sector22_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.0633275,
+                "Longitude": -122.9961814
+            }
+        },
+        "Sector22_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.091528,
+                "Longitude": -122.6865753
+            }
+        },
+        "Sector22_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.851345,
+                "Longitude": -122.9549006
+            }
+        },
+        "Sector23_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.6527321,
+                "Longitude": -122.9136198
+            }
+        },
+        "Sector23_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.5104147,
+                "Longitude": -122.9549006
+            }
+        },
+        "Sector24_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.210324,
+                "Longitude": -122.9136198
+            }
+        },
+        "Sector24_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 45.9805698,
+                "Longitude": -122.7484966
+            }
+        },
+        "Sector25_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.2899616,
+                "Longitude": -122.2324864
+            }
+        },
+        "Sector25_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.2899616,
+                "Longitude": -121.8403187
+            }
+        },
+        "Sector25_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.5372937,
+                "Longitude": -122.0054419
+            }
+        },
+        "Sector26_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.5509989,
+                "Longitude": -121.7371166
+            }
+        },
+        "Sector26_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.3862901,
+                "Longitude": -121.5926338
+            }
+        },
+        "Sector26_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.6468308,
+                "Longitude": -121.3655893
+            }
+        },
+        "Sector27_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.5647004,
+                "Longitude": -120.8082984
+            }
+        },
+        "Sector27_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.7278456,
+                "Longitude": -121.097264
+            }
+        },
+        "Sector28_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 48.0137278,
+                "Longitude": -122.5833733
+            }
+        },
+        "Sector28_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.8333733,
+                "Longitude": -122.4595309
+            }
+        },
+        "Sector28_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.9305659,
+                "Longitude": -122.1705652
+            }
+        },
+        "Sector29_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.652386,
+                "Longitude": -122.5627329
+            }
+        },
+        "Sector29_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.6384376,
+                "Longitude": -122.3356884
+            }
+        },
+        "Sector29_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.6384376,
+                "Longitude": -122.0880035
+            }
+        },
+        "Sector29_point4": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.4847587,
+                "Longitude": -122.2324864
+            }
+        },
+        "Sector30_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.2463623,
+                "Longitude": -122.5627329
+            }
+        },
+        "Sector30_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.2041798,
+                "Longitude": -122.1705652
+            }
+        },
+        "Sector30_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.0068815,
+                "Longitude": -122.3769692
+            }
+        },
+        "Sector31_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.7663154,
+                "Longitude": -122.0673631
+            }
+        },
+        "Sector31_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.7804964,
+                "Longitude": -121.7783975
+            }
+        },
+        "Sector31_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.9786359,
+                "Longitude": -121.9848015
+            }
+        },
+        "Sector32_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.2041798,
+                "Longitude": -121.8403187
+            }
+        },
+        "Sector32_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.4147546,
+                "Longitude": -122.0054419
+            }
+        },
+        "Sector32_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.4987482,
+                "Longitude": -121.7783975
+            }
+        },
+        "Sector33_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.6802714,
+                "Longitude": -121.9848015
+            }
+        },
+        "Sector33_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.8750497,
+                "Longitude": -121.9848015
+            }
+        },
+        "Sector33_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.8472692,
+                "Longitude": -121.6132742
+            }
+        },
+        "Sector34_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.9079563,
+                "Longitude": -121.551353
+            }
+        },
+        "Sector34_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.1338006,
+                "Longitude": -121.6751954
+            }
+        },
+        "Sector34_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.2182444,
+                "Longitude": -121.5719934
+            }
+        },
+        "Sector35_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.2463623,
+                "Longitude": -121.2004661
+            }
+        },
+        "Sector35_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.1478839,
+                "Longitude": -120.8289388
+            }
+        },
+        "Sector36_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.9645075,
+                "Longitude": -120.5812539
+            }
+        },
+        "Sector36_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 46.6811505,
+                "Longitude": -120.4780519
+            }
+        },
+        "Sector37_point1": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.2182444,
+                "Longitude": -120.2510074
+            }
+        },
+        "Sector37_point2": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.3727072,
+                "Longitude": -120.1271649
+            }
+        },
+        "Sector37_point3": {
+            "Type": "GroundStation",
+            "Location": {
+                "Latitude": 47.4847587,
+                "Longitude": -120.333569
+            }
+        }
+    },
+    "NetworkOrder": [
+        "Sector1_point1",
+        "Sector1_point2",
+        "Sector1_point3",
+        "Sector1_point4",
+        "Sector1_point5",
+        "Sector1_point6",
+        "Sector1_point7",
+        "Sector1_point8",
+        "Sector1_point9",
+        "Sector1_point10",
+        "Sector1_point11",
+        "Sector1_point12",
+        "Sector1_point13",
+        "Sector1_point14",
+        "Sector1_point15",
+        "Sector2_point1",
+        "Sector2_point2",
+        "Sector2_point3",
+        "Sector2_point4",
+        "Sector2_point5",
+        "Sector3_point1",
+        "Sector3_point2",
+        "Sector3_point3",
+        "Sector3_point4",
+        "Sector3_point5",
+        "Sector3_point6",
+        "Sector3_point7",
+        "Sector3_point8",
+        "Sector4_point1",
+        "Sector4_point2",
+        "Sector4_point3",
+        "Sector4_point4",
+        "Sector4_point5",
+        "Sector4_point6",
+        "Sector4_point7",
+        "Sector4_point8",
+        "Sector5_point1",
+        "Sector5_point2",
+        "Sector5_point3",
+        "Sector5_point4",
+        "Sector5_point5",
+        "Sector5_point6",
+        "Sector5_point7",
+        "Sector5_point8",
+        "Sector5_point9",
+        "Sector5_point10",
+        "Sector5_point11",
+        "Sector5_point12",
+        "Sector5_point13",
+        "Sector6_point1",
+        "Sector6_point2",
+        "Sector6_point3",
+        "Sector6_point4",
+        "Sector6_point5",
+        "Sector6_point6",
+        "Sector6_point7",
+        "Sector6_point8",
+        "Sector6_point9",
+        "Sector7_point1",
+        "Sector7_point2",
+        "Sector7_point3",
+        "Sector7_point4",
+        "Sector7_point5",
+        "Sector7_point6",
+        "Sector7_point7",
+        "Sector7_point8",
+        "Sector8_point1",
+        "Sector8_point2",
+        "Sector8_point3",
+        "Sector8_point4",
+        "Sector9_point1",
+        "Sector9_point2",
+        "Sector9_point3",
+        "Sector9_point4",
+        "Sector9_point5",
+        "Sector9_point6",
+        "Sector10_point1",
+        "Sector10_point2",
+        "Sector10_point3",
+        "Sector10_point4",
+        "Sector10_point5",
+        "Sector11_point1",
+        "Sector11_point2",
+        "Sector12_point1",
+        "Sector12_point2",
+        "Sector12_point3",
+        "Sector12_point4",
+        "Sector13_point1",
+        "Sector13_point2",
+        "Sector13_point3",
+        "Sector14_point1",
+        "Sector14_point2",
+        "Sector14_point3",
+        "Sector15_point1",
+        "Sector15_point2",
+        "Sector15_point3",
+        "Sector16_point1",
+        "Sector16_point2",
+        "Sector16_point3",
+        "Sector17_point1",
+        "Sector17_point2",
+        "Sector17_point3",
+        "Sector18_point1",
+        "Sector18_point2",
+        "Sector19_point1",
+        "Sector19_point2",
+        "Sector19_point3",
+        "Sector20_point1",
+        "Sector20_point2",
+        "Sector20_point3",
+        "Sector21_point1",
+        "Sector21_point2",
+        "Sector21_point3",
+        "Sector22_point1",
+        "Sector22_point2",
+        "Sector22_point3",
+        "Sector23_point1",
+        "Sector23_point2",
+        "Sector24_point1",
+        "Sector24_point2",
+        "Sector25_point1",
+        "Sector25_point2",
+        "Sector25_point3",
+        "Sector26_point1",
+        "Sector26_point2",
+        "Sector26_point3",
+        "Sector27_point1",
+        "Sector27_point2",
+        "Sector28_point1",
+        "Sector28_point2",
+        "Sector28_point3",
+        "Sector29_point1",
+        "Sector29_point2",
+        "Sector29_point3",
+        "Sector29_point4",
+        "Sector30_point1",
+        "Sector30_point2",
+        "Sector30_point3",
+        "Sector31_point1",
+        "Sector31_point2",
+        "Sector31_point3",
+        "Sector32_point1",
+        "Sector32_point2",
+        "Sector32_point3",
+        "Sector33_point1",
+        "Sector33_point2",
+        "Sector33_point3",
+        "Sector34_point1",
+        "Sector34_point2",
+        "Sector34_point3",
+        "Sector35_point1",
+        "Sector35_point2",
+        "Sector36_point1",
+        "Sector36_point2",
+        "Sector37_point1",
+        "Sector37_point2",
+        "Sector37_point3"
+    ],
+    "Constellation": "Telesat"
+}

@@ -51,7 +51,8 @@ def main():
             return
 
         simulation_configs = config.sub_simulations()
-        for sub_config in simulation_configs:
+        for sub_config_name in simulation_configs:
+            sub_config = simulation_configs[sub_config_name]
             logging.info("Calculating Round Trip Time for specified mixed-network path...")
             rtt_file_path = sim_path + "/" + sub_config.name() + "_calculated_rtts.txt"
             simulator = None

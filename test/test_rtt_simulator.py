@@ -19,8 +19,8 @@ def test_sat_sim():
     with tempfile.TemporaryDirectory() as tempdir_name:
         duration = 200 #seconds
 
-        src = net_point.NetworkPoint("start", constants.GS_POINT_TYPE, "start")
-        dst = net_point.NetworkPoint("end", constants.GS_POINT_TYPE, "end")
+        src = net_point.NetworkPoint("start", constants.GS_POINT_TYPE, "start", 0, 0)
+        dst = net_point.NetworkPoint("end", constants.GS_POINT_TYPE, "end", 120, 120)
         simulator = sat_relay_sim.SatelliteRelaySimulator(gmap, duration, state_dir, tempdir_name)
 
         net_seg = net_segment.NetworkSegment(src, dst)
@@ -51,8 +51,8 @@ def test_sat_sim():
 
 def test_sat_state_gen():
     const_config = constellation_config.GetStarlinkConfig()
-    src = net_point.NetworkPoint("Tokyo", constants.GS_POINT_TYPE, "Tokyo", lat=35.6895, long=139.69171)
-    dst = net_point.NetworkPoint("Shanghai", constants.GS_POINT_TYPE, "Shanghai", lat=31.22222, long=121.45806)
+    src = net_point.NetworkPoint("Tokyo", constants.GS_POINT_TYPE, "Tokyo", 35.6895, 139.69171)
+    dst = net_point.NetworkPoint("Shanghai", constants.GS_POINT_TYPE, "Shanghai", 31.22222, 121.45806)
     netpoints = (net_point for net_point in [src, dst])
 
     with tempfile.TemporaryDirectory() as tempdir_name:
@@ -86,7 +86,7 @@ def test_dist_sim():
     assert int(seattle_to_la_km) == 1546
 
     seattle_to_la_rtt_ms = 32.986
-    simulator = terrestrial_simulator.DistanceBasedPingCalculator(seattle_to_la_km, seattle_to_la_rtt_ms)
+    simulator = terrestrial_simulator.DistanceBasedPingCalculator(seattle_to_la_km, seattle_to_la_rtt_ms, 0)
 
     assert simulator.rtt_between(seattle_loc[0], seattle_loc[1], los_angeles_loc[0], los_angeles_loc[1]) == seattle_to_la_rtt_ms
     assert 5 - simulator.rtt_between(seattle_loc[0], seattle_loc[1], portland_loc[0], portland_loc[1]) < 0.1

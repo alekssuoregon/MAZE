@@ -36,9 +36,16 @@ def main():
         os.mkdir(sim_path)
 
 
+    if args.gen_state:
+        try:
+            generate_network_state(config, sim_path)
+        except ValueError as e:
+            logging.error("Failed to generate network state -> " + str(e))
+            return
+
     if args.run:
         try:
-            gs_map = retrieve_network_state(config, sim_path, gen_state=args.gen_state)
+            gs_map = retrieve_network_state(config, sim_path)
         except ValueError as e:
             logging.error("Failed to retrieve satellite network state -> " + str(e))
             return

@@ -56,6 +56,9 @@ class SimulationConfig():
     def duration(self):
         return self._duration
 
+    def constellation(self):
+        return self._constellation
+
     def __valid_config(self, config):
         def valid_point(network_point):
             if constants.POINT_TYPE_KEY not in network_point or not isinstance(network_point[constants.POINT_TYPE_KEY], str):

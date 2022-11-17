@@ -44,5 +44,5 @@ class DistanceBasedPingCalculator():
         distance_percent = segment_distance / self._distance_km
 
         calculated_rtt = distance_percent * self._rtt_ms
-        calculated_rtt += float(self.randrange(0, self._jitter_ms * 100)) / 100.0
+        calculated_rtt += float(random.randrange(0, self._jitter_ms * 100)) / 100.0
         return calculated_rtt
